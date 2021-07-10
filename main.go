@@ -12,7 +12,7 @@ func main() {
 	app := golib.Init(golib.Options{})
 
 	r := gin.New()
-	r.Use(golibgin.WrapAll(app.Middleware...)...)
+	r.Use(golibgin.WrapAll(app.Middleware)...)
 
 	r.GET("/200", func(context *gin.Context) {
 		logc.Info(context, "Test log success")
