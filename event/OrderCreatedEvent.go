@@ -16,14 +16,14 @@ type OrderCreatedPayload struct {
 
 func NewOrderCreatedEvent(ctx context.Context, payload OrderCreatedPayload) *OrderCreatedEvent {
 	orderEvent := OrderCreatedEvent{}
-	orderEvent.AbstractEvent = event.NewAbstractEvent(ctx, orderEvent.GetName(), payload)
+	orderEvent.AbstractEvent = event.NewAbstractEvent(ctx, orderEvent.Name(), payload)
 	return &orderEvent
 }
 
-func (r OrderCreatedEvent) GetName() string {
+func (r OrderCreatedEvent) Name() string {
 	return "OrderCreatedEvent"
 }
 
-func (r OrderCreatedEvent) GetPayload() interface{} {
+func (r OrderCreatedEvent) Payload() interface{} {
 	return r.Payload
 }
