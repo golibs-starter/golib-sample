@@ -1,0 +1,4 @@
+vinid:
+  httpclient:
+    connection_request_timeout: 10ms
+    connect_timeout: 40s
