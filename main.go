@@ -7,7 +7,7 @@ import (
 	"gitlab.id.vin/vincart/golib-gin"
 	"gitlab.id.vin/vincart/golib-sample/event"
 	"gitlab.id.vin/vincart/golib/pubsub"
-	"gitlab.id.vin/vincart/golib/web/logging/logc"
+	"gitlab.id.vin/vincart/golib/web/log"
 )
 
 func main() {
@@ -21,11 +21,11 @@ func main() {
 			Code:        "VMM1234",
 			TotalAmount: 15000,
 		}))
-		logc.Info(context, "Test log success")
+		log.Info(context, "Test log success")
 	})
 
 	r.GET("/400", func(context *gin.Context) {
-		logc.Error(context, "Test log error")
+		log.Error(context, "Test log error")
 		context.JSON(400, nil)
 	})
 
