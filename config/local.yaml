@@ -1,3 +1,0 @@
-vinid:
-  httpclient:
-    connect_timeout: 30s

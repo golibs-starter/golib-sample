@@ -1,0 +1,4 @@
+vinid:
+  httpclient:
+    timeout: 30s
+    max_idle_conns: 100
