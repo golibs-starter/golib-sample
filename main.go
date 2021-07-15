@@ -27,6 +27,11 @@ func main() {
 			Code:        "VMM1234",
 			TotalAmount: 15000,
 		}))
+		_, err := app.HttpClient.Get("https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
+		if err != nil {
+			log.Error(context, "cannot request to vmm order with error [%v]", err)
+			return
+		}
 		log.Info(context, "Test log success")
 	})
 
