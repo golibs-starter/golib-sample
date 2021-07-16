@@ -1,6 +1,10 @@
 vinid:
   application:
     name: golib-example
+  logging:
+    development: true
+    json_output_mode: true
+    caller_skip: 2
   httpclient:
     timeout: 30s
     max_idle_conns: 100
