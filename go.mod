@@ -10,10 +10,13 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	gitlab.id.vin/vincart/golib v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-gin v0.0.0-00010101000000-000000000000
+	gitlab.id.vin/vincart/golib-security v0.0.0-00010101000000-000000000000
 	golang.org/x/sys v0.0.0-20210603081109-ebe580a85c40 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )
 
 replace gitlab.id.vin/vincart/golib => ../golib
+
+replace gitlab.id.vin/vincart/golib-security => ../golib-security
 
 replace gitlab.id.vin/vincart/golib-gin => ../golib-gin

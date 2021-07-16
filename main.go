@@ -6,6 +6,7 @@ import (
 	"gitlab.id.vin/vincart/golib"
 	"gitlab.id.vin/vincart/golib-gin"
 	"gitlab.id.vin/vincart/golib-sample/event"
+	"gitlab.id.vin/vincart/golib-security"
 	"gitlab.id.vin/vincart/golib/config"
 	"gitlab.id.vin/vincart/golib/pubsub"
 	"gitlab.id.vin/vincart/golib/web/log"
@@ -16,7 +17,7 @@ func main() {
 		golib.WithConfigLoader(config.Option{}),
 		golib.WithLoggerAutoConfig(),
 		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
-		golib.WithHttpClientAutoConfig(),
+		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
 	)
 
 	r := gin.New()
