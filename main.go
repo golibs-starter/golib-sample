@@ -13,11 +13,7 @@ import (
 
 func main() {
 	app := golib.New(
-		golib.WithConfigProperties(
-			golib.SetActiveProfiles([]string{}),
-			golib.SetConfigPaths([]string{"./config"}),
-			golib.SetConfigFormat("yaml"),
-		),
+		golib.WithConfigProperties(),
 		golib.WithLoggerAutoConfig(),
 		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),

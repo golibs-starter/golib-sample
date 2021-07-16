@@ -1,6 +1,6 @@
+application:
+  name: golib-example
 vinid:
-  application:
-    name: golib-example
   logging:
     development: true
     json_output_mode: true

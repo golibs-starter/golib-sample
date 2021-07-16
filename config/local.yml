@@ -6,3 +6,10 @@ vinid:
       applied_uris:
         - https://api-qc.vinid.dev/
         - https://api-uat.vinid.dev/
+  security:
+    http:
+      client:
+        basic_auth:
+          - { url_match: "https://vinid.net/path", username: guest, password: secret }
+          - { url_match: "https://example.com/path", username: demo, password: secret }
+          - { url_match: "https://api-qc.vinid.dev/vmm-order/v1/orders/*", username: internal, password: pass }
