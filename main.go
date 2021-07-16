@@ -14,8 +14,8 @@ import (
 func main() {
 	app := golib.New(
 		golib.WithConfigLoader(config.Option{}),
-		golib.WithLogger(),
-		golib.WithEventBus(map[pubsub.Event][]pubsub.Subscriber{}),
+		golib.WithLoggerAutoConfig(),
+		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(),
 	)
 
@@ -27,7 +27,7 @@ func main() {
 			Code:        "VMM1234",
 			TotalAmount: 15000,
 		}))
-		_, err := app.HttpClient.Get("https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
+		_, err := app.HttpClient.Get(context, "https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
 		if err != nil {
 			log.Error(context, "cannot request to vmm order with error [%v]", err)
 			return
