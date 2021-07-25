@@ -9,7 +9,27 @@ vinid:
   security:
     http:
       client:
-        basic_auth:
-          - { url_match: "https://vinid.net/path", username: guest, password: secret }
-          - { url_match: "https://example.com/path", username: demo, password: secret }
-          - { url_match: "https://api-qc.vinid.dev/vmm-order/v1/orders/*", username: internal, password: pass }
+        basicAuth:
+          - { urlMatch: "https://vinid.net/path", username: guest, password: secret }
+          - { urlMatch: "https://example.com/path", username: demo, password: secret }
+          - { urlMatch: "https://api-qc.vinid.dev/vmm-order/v1/orders/*", username: internal, password: pass }
+      protectedUrls:
+        - { urlPattern: "200", method: GET, unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
+      jwt:
+        algorithm: RSA
+        type: JWT_TOKEN_MOBILE
+        publicKey: |
+          -----BEGIN PUBLIC KEY-----
+          MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAstKpYuR1uxUyr3xwjWsd
+          3lxMY79ME1ZQlALyHsRao3lP4F419bD9Q4Rvv8S3Irb6cpFLZgFn+U1/6alNuMjk
+          wc4gQD01Eg23OJXtzaXmxg+b4TrLZJadOXHEGczOb4qIofTM4SP+tSNcLSxJJDdJ
+          YyFOiZ6UqZi7dNlM6aGU5GKxGnK4ND2FpuaI5rv3isyCV71BRk9kv8wzKYTy3dO+
+          oTl0EZ0vHDWA8rXqL17WKsrHdx0u0dLzOSCUv4JEezbnRxDgM/ZvszuOFq8nOqBv
+          E2viM1u9Tvq6xPmpMV1tRfG3Y7uK6rZhqorGVHwwbftovAdU/lFqduif4NNhJ3Vq
+          8/d6L6CPZH/aojUDAlXGketoiW3aOVZF3ESDKRUHWc5s9PJ//QQSkVWipmeYHCex
+          vogTsqBswzHhP1yaXaNA/xJNWUuCtq8r82C40RFkjQC5eAUHUvqlHmBdLk2VN+Zm
+          SDuoqMOke2X+6SwahB6DxMke+9grzxhMYgebgLwij6SRoBnG7Kxgh1ozGguRIu+1
+          QpFjkyJ3fwf+tlD9qcSaWleXwDQ3s52Hu31S+BDEL5/R1KsGBhQJiSEfkmqhIOfE
+          w+rRjoO4BNhJYiipcDuBobZb6OiLXrARWVDSjRiavHACCweLQ5Pj48NfubR41exF
+          Htz3bmTMDHrBMXdSJqv974kCAwEAAQ==
+          -----END PUBLIC KEY-----

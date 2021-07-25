@@ -17,6 +17,7 @@ func main() {
 		golib.WithLoggerAutoConfig(),
 		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
+		golibsec.WithJwtAuthentication(),
 	)
 
 	r := gin.New()
@@ -30,9 +31,15 @@ func main() {
 		_, err := app.HttpClient.Get(context, "https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
 		if err != nil {
 			log.Error(context, "cannot request to vmm order with error [%v]", err)
+			context.JSON(404, map[string]interface{}{
+				"message": "not found",
+			})
 			return
 		}
 		log.Info(context, "Test log success")
+		context.JSON(200, map[string]interface{}{
+			"message": "successful",
+		})
 	})
 
 	r.GET("/400", func(context *gin.Context) {
