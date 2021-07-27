@@ -17,34 +17,36 @@ func main() {
 		golib.WithLoggerAutoConfig(),
 		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
-		golibsec.WithJwtAuthentication(),
+		golibsec.WithHttpSecurityAutoConfig(
+			golibsec.WithJwtAuth(),
+		),
 	)
 
 	r := gin.New()
 	r.Use(golibgin.WrapAll(app.Middleware())...)
 
-	r.GET("/200", func(context *gin.Context) {
-		pubsub.Publish(event.NewOrderCreatedEvent(context, event.OrderCreatedPayload{
+	r.GET("/200", func(c *gin.Context) {
+		pubsub.Publish(event.NewOrderCreatedEvent(c, event.OrderCreatedPayload{
 			Code:        "VMM1234",
 			TotalAmount: 15000,
 		}))
-		_, err := app.HttpClient.Get(context, "https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
-		if err != nil {
-			log.Error(context, "cannot request to vmm order with error [%v]", err)
-			context.JSON(404, map[string]interface{}{
-				"message": "not found",
-			})
-			return
-		}
-		log.Info(context, "Test log success")
-		context.JSON(200, map[string]interface{}{
+		log.Info(c, "Test log success")
+		c.JSON(200, map[string]interface{}{
 			"message": "successful",
 		})
 	})
 
-	r.GET("/400", func(context *gin.Context) {
-		log.Error(context, "Test log error")
-		context.JSON(400, nil)
+	r.GET("/400", func(c *gin.Context) {
+		_, err := app.HttpClient.Get(c, "https://api-qc.vinid.dev/vmm-order/v1/orders", nil)
+		if err != nil {
+			log.Error(c, "cannot request to vmm order with error [%v]", err)
+			c.JSON(400, map[string]interface{}{
+				"message": "not found",
+			})
+			return
+		}
+		log.Error(c, "Test log error")
+		c.JSON(400, nil)
 	})
 
 	// Start HTTP Server
