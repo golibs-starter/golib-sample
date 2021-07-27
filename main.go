@@ -15,7 +15,7 @@ func main() {
 	app := golib.New(
 		golib.WithConfigProperties(),
 		golib.WithLoggerAutoConfig(),
-		golib.WithEventBusAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
+		golib.WithEventAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
 		golibsec.WithHttpSecurityAutoConfig(
 			golibsec.WithJwtAuth(),
