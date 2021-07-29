@@ -14,8 +14,8 @@ vinid:
           - { urlMatch: "https://example.com/path", username: demo, password: secret }
           - { urlMatch: "https://api-qc.vinid.dev/vmm-order/v1/orders/*", username: internal, password: pass }
       protectedUrls:
-        - { urlPattern: "/200", method: GET, unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
-        - { urlPattern: "/400", method: GET, unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
+        - { urlPattern: "/200", method: GET, roles: ["MOBILE_APP"], unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
+        - { urlPattern: "/400", method: GET, roles: ["MOBILE_APP"], unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
       jwt:
         algorithm: RS256
         type: JWT_TOKEN_MOBILE
