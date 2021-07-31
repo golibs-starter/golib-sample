@@ -18,6 +18,7 @@ func main() {
 		golib.WithEventAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
 		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
 		golibsec.WithHttpSecurityAutoConfig(
+			golibsec.WithBasicAuth(),
 			golibsec.WithJwtAuth(),
 		),
 	)
@@ -47,6 +48,24 @@ func main() {
 		}
 		log.Error(c, "Test log error")
 		c.JSON(400, nil)
+	})
+
+	r.POST("/internal/v1/", func(c *gin.Context) {
+		c.JSON(200, map[string]interface{}{
+			"message": "success",
+		})
+	})
+
+	r.GET("/actuator/health", func(c *gin.Context) {
+		c.JSON(200, map[string]interface{}{
+			"status": "up",
+		})
+	})
+
+	r.GET("/actuator/info", func(c *gin.Context) {
+		c.JSON(200, map[string]interface{}{
+			"version": "1.0.1",
+		})
 	})
 
 	// Start HTTP Server
