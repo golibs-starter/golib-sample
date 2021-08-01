@@ -13,13 +13,15 @@ import (
 
 func main() {
 	app := golib.New(
-		golib.WithConfigProperties(),
+		golib.WithProperties(),
 		golib.WithLoggerAutoConfig(),
-		golib.WithEventAutoConfig(map[pubsub.Event][]pubsub.Subscriber{}),
-		golib.WithHttpClientAutoConfig(golibsec.SecuredHttpClientWrapper()),
+		golib.WithEventAutoConfig(),
+		golib.WithHttpClientAutoConfig(
+			golibsec.UsingSecuredHttpClient(),
+		),
 		golibsec.WithHttpSecurityAutoConfig(
-			golibsec.WithBasicAuth(),
-			golibsec.WithJwtAuth(),
+			golibsec.UsingBasicAuth(),
+			golibsec.UsingJwtAuth(),
 		),
 	)
 
