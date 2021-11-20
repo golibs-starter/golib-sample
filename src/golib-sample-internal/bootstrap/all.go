@@ -5,6 +5,7 @@ import (
 	"gitlab.id.vin/vincart/golib"
 	"gitlab.id.vin/vincart/golib-sample-adapter/http/client"
 	adapterProps "gitlab.id.vin/vincart/golib-sample-adapter/properties"
+	"gitlab.id.vin/vincart/golib-sample-adapter/publisher"
 	"gitlab.id.vin/vincart/golib-sample-adapter/service"
 	"gitlab.id.vin/vincart/golib-sample-core/usecase"
 	"gitlab.id.vin/vincart/golib-sample-internal/controller"
@@ -40,11 +41,13 @@ func All() []fx.Option {
 		golib.ProvideProps(adapterProps.NewOrderRepositoryProperties),
 
 		// Provide port's implements
+		fx.Provide(publisher.NewEventPublisherAdapter),
 		fx.Provide(client.NewOrderRepositoryAdapter),
 
 		// Provide use cases
 		fx.Provide(usecase.NewGetStatusUseCase),
 		fx.Provide(usecase.NewGetOrderUseCase),
+		fx.Provide(usecase.NewCreateOrderUseCase),
 
 		// Provide services
 		fx.Provide(service.NewStatusService),

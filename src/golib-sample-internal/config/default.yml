@@ -11,5 +11,6 @@ vinid:
       protectedUrls:
         - { urlPattern: "/v1/statuses/.*", method: GET, roles: [ "INTERNAL_SERVICE" ], unauthorizedWwwAuthenticateHeaders: [ "Basic" ] }
         - { urlPattern: "/v1/orders/*", method: GET, roles: [ "INTERNAL_SERVICE" ], unauthorizedWwwAuthenticateHeaders: [ "Basic" ] }
+        - { urlPattern: "/v1/orders", method: POST, roles: [ "INTERNAL_SERVICE" ], unauthorizedWwwAuthenticateHeaders: [ "Basic" ] }
       basicAuth.users:
         - { username: "internal_service", password: "secret", roles: [ "INTERNAL_SERVICE" ] }

@@ -41,4 +41,5 @@ func RegisterGinRouters(p RegisterRoutersIn) {
 
 	group.GET("/v1/statuses/:code", p.StatusController.ReturnStatus)
 	group.GET("/v1/orders/:id", p.OrderController.GetOrder)
+	group.POST("/v1/orders", p.OrderController.CreateOrder)
 }

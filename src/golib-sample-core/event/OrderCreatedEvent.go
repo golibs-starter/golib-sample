@@ -10,7 +10,7 @@ type OrderCreatedEvent struct {
 	*event.AbstractEvent
 }
 
-func NewOrderCreatedEvent(ctx context.Context, payload entity.Order) *OrderCreatedEvent {
+func NewOrderCreatedEvent(ctx context.Context, payload *entity.Order) *OrderCreatedEvent {
 	return &OrderCreatedEvent{AbstractEvent: event.NewAbstractEvent(ctx, "OrderCreatedEvent", payload)}
 }
 

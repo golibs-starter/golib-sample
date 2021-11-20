@@ -5,6 +5,7 @@ import "gitlab.id.vin/vincart/golib/config"
 type OrderRepositoryProperties struct {
 	BaseUrl          string
 	GetOrderByIdPath string
+	CreateOrderPath  string
 }
 
 func NewOrderRepositoryProperties(loader config.Loader) (*OrderRepositoryProperties, error) {

@@ -8,10 +8,10 @@ import (
 )
 
 type GetOrderUseCase struct {
-	orderRepo port.OrderRepositoryPort
+	orderRepo port.OrderRepository
 }
 
-func NewGetOrderUseCase(orderRepo port.OrderRepositoryPort) *GetOrderUseCase {
+func NewGetOrderUseCase(orderRepo port.OrderRepository) *GetOrderUseCase {
 	return &GetOrderUseCase{orderRepo: orderRepo}
 }
 
