@@ -1,0 +1,45 @@
+include:
+  - project: 'devops/gitlab-ci-templates'
+    ref: master
+    file: "/common/libs-next-gen.yml"
+  - project: 'devops/gitlab-ci-templates'
+    ref: master
+    file: "before-script-templates.yml"
+
+default:
+  tags: [ vincart-nonprod ]
+  image: asia.gcr.io/vinid-devops/k8s-deployer:latest
+
+cache:
+  key: "$CI_PROJECT_NAMESPACE:$CI_PROJECT_NAME"
+  paths:
+    - /go/pkg/mod
+
+variables:
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - verify
+  - docker_build
+  - deploy
+  - tag
+  - request deploy to production
+
+test:
+  stage: verify
+  allow_failure: false
+  image: golang:1.14-alpine
+  tags:
+    - vincart-nonprod
+  except:
+    refs:
+      - tags
+  before_script:
+    - apk update && apk add git build-base
+    - export GOPRIVATE=gitlab.id.vin
+    - git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.id.vin/".insteadOf "https://gitlab.id.vin/"
+  script:
+    - cd $CI_PROJECT_DIR/src/golib-sample-core && go test ./...
+    - cd $CI_PROJECT_DIR/src/golib-sample-adapter && go test ./...
+    - cd $CI_PROJECT_DIR/src/golib-sample-internal && go test ./...

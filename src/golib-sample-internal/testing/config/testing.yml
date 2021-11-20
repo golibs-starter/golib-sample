@@ -1,0 +1,22 @@
+app:
+  port: -1 # -1 means random port
+  logging:
+    development: true
+  services:
+    order:
+      baseUrl: https://order.sample.api
+      getOrderByIdPath: /orders/%d
+
+vinid:
+  httpclient:
+    timeout: 60s
+    proxy:
+      url: http://localhost:8088
+      applied_uris:
+        - https://order.sample.api/
+        - https://foo.local/
+  security:
+    http:
+      client:
+        basicAuth:
+          - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }

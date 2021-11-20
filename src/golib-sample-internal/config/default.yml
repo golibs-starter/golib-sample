@@ -1,0 +1,15 @@
+app:
+  name: Sample Internal API
+
+vinid:
+  security:
+    http:
+      publicUrls:
+        - /actuator/health
+        - /actuator/info
+        - /swagger/*
+      protectedUrls:
+        - { urlPattern: "/v1/statuses/.*", method: GET, roles: [ "INTERNAL_SERVICE" ], unauthorizedWwwAuthenticateHeaders: [ "Basic" ] }
+        - { urlPattern: "/v1/orders/*", method: GET, roles: [ "INTERNAL_SERVICE" ], unauthorizedWwwAuthenticateHeaders: [ "Basic" ] }
+      basicAuth.users:
+        - { username: "internal_service", password: "secret", roles: [ "INTERNAL_SERVICE" ] }
