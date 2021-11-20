@@ -1,10 +1,17 @@
 definitions:
-  entity.PaymentMethod:
+  resource.Order:
     properties:
-      code:
-        type: string
-      name:
-        type: string
+      created_at:
+        type: integer
+      id:
+        type: integer
+      total_amount:
+        type: integer
+    type: object
+  resource.Status:
+    properties:
+      http_code:
+        type: integer
     type: object
   response.Meta:
     properties:
@@ -15,29 +22,79 @@ definitions:
     type: object
   response.Response:
     properties:
-      data:
-        type: object
+      data: {}
       meta:
         $ref: '#/definitions/response.Meta'
     type: object
 info:
   contact: {}
-  title: Configuration Service Internal API
+  title: Sample internal API
   version: 1.0.0
 paths:
-  /v1/merchants/{code}/services/{service_code}/payment-methods:
+  /v1/orders:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/resource.Order'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      security:
+      - BasicAuth: []
+      summary: Create order
+      tags:
+      - OrderController
+  /v1/orders/{id}:
     get:
       consumes:
       - application/json
       parameters:
-      - description: merchant code
+      - description: order id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/resource.Order'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      security:
+      - BasicAuth: []
+      summary: Get order by ID
+      tags:
+      - OrderController
+  /v1/statuses/{code}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: status code
         in: path
         name: code
-        required: true
-        type: string
-      - description: service code
-        in: path
-        name: service_code
         required: true
         type: string
       produces:
@@ -50,23 +107,17 @@ paths:
             - $ref: '#/definitions/response.Response'
             - properties:
                 data:
-                  items:
-                    $ref: '#/definitions/entity.PaymentMethod'
-                  type: array
+                  $ref: '#/definitions/resource.Status'
               type: object
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/response.Response'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.Response'
       security:
       - BasicAuth: []
-      summary: Get Payment Methods
+      summary: API return status code
       tags:
-      - MerchantConfigController
+      - StatusController
 securityDefinitions:
   BasicAuth:
     type: basic

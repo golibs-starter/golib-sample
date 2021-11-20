@@ -15,7 +15,7 @@ var doc = `{
     "schemes": {{ marshal .Schemes }},
     "swagger": "2.0",
     "info": {
-        "description": "{{.Description}}",
+        "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {},
         "version": "{{.Version}}"
@@ -23,7 +23,52 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/merchants/{code}/services/{service_code}/payment-methods": {
+        "/v1/orders": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "OrderController"
+                ],
+                "summary": "Create order",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/resource.Order"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/orders/{id}": {
             "get": {
                 "security": [
                     {
@@ -37,21 +82,14 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "MerchantConfigController"
+                    "OrderController"
                 ],
-                "summary": "Get Payment Methods",
+                "summary": "Get order by ID",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "merchant code",
-                        "name": "code",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "service code",
-                        "name": "service_code",
+                        "type": "integer",
+                        "description": "order id",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     }
@@ -68,20 +106,65 @@ var doc = `{
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/definitions/entity.PaymentMethod"
-                                            }
+                                            "$ref": "#/definitions/resource.Order"
                                         }
                                     }
                                 }
                             ]
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/response.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/statuses/{code}": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "StatusController"
+                ],
+                "summary": "API return status code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "status code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/response.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/resource.Status"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     },
                     "500": {
@@ -95,14 +178,25 @@ var doc = `{
         }
     },
     "definitions": {
-        "entity.PaymentMethod": {
+        "resource.Order": {
             "type": "object",
             "properties": {
-                "code": {
-                    "type": "string"
+                "created_at": {
+                    "type": "integer"
                 },
-                "name": {
-                    "type": "string"
+                "id": {
+                    "type": "integer"
+                },
+                "total_amount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "resource.Status": {
+            "type": "object",
+            "properties": {
+                "http_code": {
+                    "type": "integer"
                 }
             }
         },
@@ -120,9 +214,7 @@ var doc = `{
         "response.Response": {
             "type": "object",
             "properties": {
-                "data": {
-                    "type": "object"
-                },
+                "data": {},
                 "meta": {
                     "$ref": "#/definitions/response.Meta"
                 }
@@ -151,7 +243,7 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "",
 	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "Configuration Service Internal API",
+	Title:       "Sample internal API",
 	Description: "",
 }
 
@@ -165,6 +257,13 @@ func (s *s) ReadDoc() string {
 		"marshal": func(v interface{}) string {
 			a, _ := json.Marshal(v)
 			return string(a)
+		},
+		"escape": func(v interface{}) string {
+			// escape tabs
+			str := strings.Replace(v.(string), "\t", "\\t", -1)
+			// replace " with \", and if that results in \\", replace that with \\\"
+			str = strings.Replace(str, "\"", "\\\"", -1)
+			return strings.Replace(str, "\\\\\"", "\\\\\\\"", -1)
 		},
 	}).Parse(doc)
 	if err != nil {
@@ -180,5 +279,5 @@ func (s *s) ReadDoc() string {
 }
 
 func init() {
-	swag.Register(swag.Name, &s{})
+	swag.Register("swagger", &s{})
 }

@@ -8,6 +8,8 @@ app:
       getOrderByIdPath: /orders/%d
 
 vinid:
+  swagger:
+    enabled: true
   httpclient:
     timeout: 60s
     proxy:

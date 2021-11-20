@@ -22,7 +22,7 @@ func NewStatusController(statusService *service.StatusService) *StatusController
 // @Produce  json
 // @Security BasicAuth
 // @Param    	code			path	string		true 	"status code"
-// @Success 200 {object} response.Response
+// @Success 200 {object} response.Response{data=resource.Status}
 // @Failure 500 {object} response.Response
 // @Router /v1/statuses/{code} [get]
 func (s StatusController) ReturnStatus(c *gin.Context) {

@@ -26,7 +26,7 @@ func NewOrderController(orderService *service.OrderService) *OrderController {
 // @Produce  json
 // @Security BasicAuth
 // @Param    	id			path	int		true 	"order id"
-// @Success 200 {object} response.Response
+// @Success 200 {object} response.Response{data=resource.Order}
 // @Failure 500 {object} response.Response
 // @Router /v1/orders/{id} [get]
 func (s OrderController) GetOrder(c *gin.Context) {
@@ -50,7 +50,7 @@ func (s OrderController) GetOrder(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Security BasicAuth
-// @Success 200 {object} response.Response
+// @Success 200 {object} response.Response{data=resource.Order}
 // @Failure 500 {object} response.Response
 // @Router /v1/orders [post]
 func (s OrderController) CreateOrder(c *gin.Context) {
