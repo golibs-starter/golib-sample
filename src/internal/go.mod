@@ -17,6 +17,5 @@ require (
 	go.uber.org/fx v1.13.1
 )
 
-replace gitlab.id.vin/vincart/golib-sample-core => ./../golib-sample-core
-
-replace gitlab.id.vin/vincart/golib-sample-adapter => ./../golib-sample-adapter
+replace gitlab.id.vin/vincart/golib-sample-core => ./../core
+replace gitlab.id.vin/vincart/golib-sample-adapter => ./../adapter

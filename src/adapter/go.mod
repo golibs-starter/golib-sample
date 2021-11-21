@@ -32,4 +32,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace gitlab.id.vin/vincart/golib-sample-core => ./../golib-sample-core
+replace gitlab.id.vin/vincart/golib-sample-core => ./../core
