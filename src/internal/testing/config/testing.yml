@@ -1,5 +1,14 @@
 app:
   port: -1 # -1 means random port
+  datasource:
+    driver: mysql
+    host: localhost
+    port: 3306
+    database: sample_test
+    username: root
+    password: secret
+    params: parseTime=true
+    migrationSource: file://../../../migration/migrations
   logging:
     development: true
   services:

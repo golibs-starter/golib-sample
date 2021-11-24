@@ -1,0 +1,11 @@
+app:
+  datasource:
+    driver: mysql
+    host: localhost
+    port: 3306
+    database: sample
+    username: root
+    password: secret
+    migrationSource: file://migrations
+  logging:
+    development: true

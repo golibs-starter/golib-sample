@@ -5,9 +5,10 @@ down:
 	docker-compose down
 
 tidy:
-	cd src/golib-sample-core && go mod tidy
-	cd src/golib-sample-adapter && go mod tidy
-	cd src/golib-sample-internal && go mod tidy
+	cd src/core && go mod tidy
+	cd src/adapter && go mod tidy
+	cd src/internal && go mod tidy
+	cd src/migration && go mod tidy
 
 swagger internal:
-	cd src/golib-sample-internal && swag init --parseDependency --parseDepth=3
+	cd src/internal && swag init --parseDependency --parseDepth=3

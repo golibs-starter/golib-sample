@@ -3,9 +3,10 @@ package bootstrap
 import (
 	"github.com/gin-gonic/gin"
 	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-sample-adapter/http/client"
+	"gitlab.id.vin/vincart/golib-data"
 	adapterProps "gitlab.id.vin/vincart/golib-sample-adapter/properties"
 	"gitlab.id.vin/vincart/golib-sample-adapter/publisher"
+	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql"
 	"gitlab.id.vin/vincart/golib-sample-adapter/service"
 	"gitlab.id.vin/vincart/golib-sample-core/usecase"
 	"gitlab.id.vin/vincart/golib-sample-internal/controller"
@@ -29,7 +30,8 @@ func All() []fx.Option {
 		golibsec.BasicAuthOpt(),
 
 		// Provide datasource auto config
-		//golibdata.RedisOpt(),
+		golibdata.RedisOpt(),
+		golibdata.DatasourceOpt(),
 
 		// Provide http client auto config with contextual http client by default,
 		// Besides, provide an additional wrapper to easy to control security.
@@ -42,7 +44,7 @@ func All() []fx.Option {
 
 		// Provide port's implements
 		fx.Provide(publisher.NewEventPublisherAdapter),
-		fx.Provide(client.NewOrderRepositoryAdapter),
+		fx.Provide(mysql.NewOrderRepositoryAdapter),
 
 		// Provide use cases
 		fx.Provide(usecase.NewGetStatusUseCase),
