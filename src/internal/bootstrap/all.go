@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gitlab.id.vin/vincart/golib"
 	"gitlab.id.vin/vincart/golib-data"
+	"gitlab.id.vin/vincart/golib-message-bus"
 	adapterProps "gitlab.id.vin/vincart/golib-sample-adapter/properties"
 	"gitlab.id.vin/vincart/golib-sample-adapter/publisher"
 	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql"
@@ -32,6 +33,9 @@ func All() []fx.Option {
 		// Provide datasource auto config
 		golibdata.RedisOpt(),
 		golibdata.DatasourceOpt(),
+		golibmsg.KafkaCommonOpt(),
+		golibmsg.KafkaAdminOpt(),
+		golibmsg.KafkaProducerOpt(),
 
 		// Provide http client auto config with contextual http client by default,
 		// Besides, provide an additional wrapper to easy to control security.

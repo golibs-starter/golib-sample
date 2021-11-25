@@ -11,6 +11,9 @@ app:
     username: root
     password: secret
     params: parseTime=true
+  kafka:
+    bootstrapServers: localhost:9092
+    clientId: golib-sample
   logging:
     development: true
   services:
@@ -33,3 +36,16 @@ vinid:
       client:
         basicAuth:
           - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
+  kafka:
+    topics:
+      - name: c1.order.order-created
+        partitions: 1
+        replicaFactor: 1
+        retention: 72h
+  messagebus:
+    event:
+      producer:
+        topicMappings:
+          OrderCreatedEvent:
+            topicName: c1.order.order-created
+            transactional: false

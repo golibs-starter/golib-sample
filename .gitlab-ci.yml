@@ -26,7 +26,7 @@ stages:
   - tag
   - request deploy to production
 
-test:
+.test:
   stage: verify
   allow_failure: false
   image: golang:1.14-alpine
@@ -39,6 +39,26 @@ test:
     - apk update && apk add git build-base
     - export GOPRIVATE=gitlab.id.vin
     - git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.id.vin/".insteadOf "https://gitlab.id.vin/"
+
+automation test:
+  extends: .test
+  services:
+    - name: asia.gcr.io/vinid-devops/mysql:5.7
+      alias: mysql
+    - name: asia.gcr.io/vinid-devops/krisgeus/docker-kafka:latest
+      alias: kafka
+    - name: asia.gcr.io/vinid-devops/redis:5.0.6
+      alias: redis
+  variables:
+    MYSQL_DATABASE: sample_test
+    MYSQL_ROOT_PASSWORD: secret
+    ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:9092,INTERNAL://localhost:9093'
+    LISTENERS: 'PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:9093'
+    SECURITY_PROTOCOL_MAP: 'PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT'
+    INTER_BROKER: 'INTERNAL'
+    APP_DATASOURCE_HOST: mysql
+    APP_REDIS_HOST: redis
+    APP_KAFKA_BOOTSTRAPSERVERS: kafka:9092
   script:
     - cd $CI_PROJECT_DIR/src/core && go test ./...
     - cd $CI_PROJECT_DIR/src/adapter && go test ./...

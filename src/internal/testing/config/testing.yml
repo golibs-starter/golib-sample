@@ -9,6 +9,9 @@ app:
     password: secret
     params: parseTime=true
     migrationSource: file://../../../migration/migrations
+  kafka:
+    bootstrapServers: localhost:9092
+    clientId: golib-sample-test
   logging:
     development: true
   services:
@@ -29,3 +32,22 @@ vinid:
       client:
         basicAuth:
           - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
+  kafka:
+    topics:
+      - name: c1.order.order-created.test
+        partitions: 1
+        replicaFactor: 1
+        retention: 72h
+    consumer:
+      topics:
+        OrderCreatedEventDummyHandler:
+          topic: c1.order.order-created.test
+          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.local
+          enable: true
+  messagebus:
+    event:
+      producer:
+        topicMappings:
+          OrderCreatedEvent:
+            topicName: c1.order.order-created.test
+            transactional: false
