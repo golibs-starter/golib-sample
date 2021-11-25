@@ -12,6 +12,7 @@ type OrderCreatedEventDummyHandler struct {
 }
 
 func NewOrderCreatedEventDummyHandler(collector *OrderEventDummyCollector) core.ConsumerHandler {
+	log.Infof("OrderCreatedEventDummyHandler init")
 	return &OrderCreatedEventDummyHandler{collector: collector}
 }
 
