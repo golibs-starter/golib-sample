@@ -29,7 +29,7 @@ stages:
 .test:
   stage: verify
   allow_failure: false
-  image: golang:1.14-alpine
+  image: golang:1.17-alpine
   tags:
     - vincart-nonprod
   except:
