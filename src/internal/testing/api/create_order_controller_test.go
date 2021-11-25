@@ -30,7 +30,7 @@ func TestCreateOrderControllerTest(t *testing.T) {
 	s.TestSuite = base.NewTestSuite(
 		golibtest.WithTestingDir(".."),
 		golibtest.WithFxOption(golibmsg.KafkaConsumerOpt()),
-		golibtest.WithFxOption(golibmsg.ProvideConsumer(handler.NewCollectOrderCreatedEventDummyHandler)),
+		golibtest.WithFxOption(golibmsg.ProvideConsumer(handler.NewOrderCreatedEventDummyHandler)),
 		golibtest.WithFxOption(fx.Provide(handler.NewOrderEventDummyCollector)),
 		golibtest.WithFxPopulate(&s.db, &s.dummyCollector),
 		golibtest.WithFxOption(fx.Invoke(func(db *gorm.DB) {

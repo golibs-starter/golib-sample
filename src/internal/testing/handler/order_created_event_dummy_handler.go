@@ -11,7 +11,7 @@ type OrderCreatedEventDummyHandler struct {
 	collector *OrderEventDummyCollector
 }
 
-func NewCollectOrderCreatedEventDummyHandler(collector *OrderEventDummyCollector) core.ConsumerHandler {
+func NewOrderCreatedEventDummyHandler(collector *OrderEventDummyCollector) core.ConsumerHandler {
 	return &OrderCreatedEventDummyHandler{collector: collector}
 }
 
