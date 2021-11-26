@@ -12,6 +12,9 @@ app:
   kafka:
     bootstrapServers: localhost:9092
     clientId: golib-sample-test
+    producer:
+      flushMessages: 1
+      flushFrequency: 1s
   logging:
     development: true
   services:
