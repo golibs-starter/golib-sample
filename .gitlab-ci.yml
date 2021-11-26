@@ -45,7 +45,7 @@ automation test:
   services:
     - name: asia.gcr.io/vinid-devops/mysql:5.7
       alias: mysql
-    - name: asia.gcr.io/vinid-devops/krisgeus/docker-kafka:latest
+    - name: krisgeus/docker-kafka@sha256:15d4d3451ef3c106db75c65cfa3f4a667ee9a246ad7365e49cf6ff547165cfc5
       alias: kafka
     - name: asia.gcr.io/vinid-devops/redis:5.0.6
       alias: redis
