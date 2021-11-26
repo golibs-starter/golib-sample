@@ -62,7 +62,7 @@ func (s CreateOrderControllerTest) TestCreateOrder_GiveValidBody_WhenRepoRespons
 			assert.InDelta(s.T(), actualOrder.CreatedAt.Unix(), value, 1)
 		})
 
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 	defer cancel()
 	for {
 		if len(s.dummyCollector.CreatedEvents()) >= 1 || ctx.Err() != nil {
