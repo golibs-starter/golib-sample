@@ -7,9 +7,9 @@ ARG BUILD_COMMIT_HASH
 ARG BUILD_TIME
 ARG BS_PKG=gitlab.com/golibs-starter/$BUILD_MODULE/bootstrap
 ENV GO111MODULE=on
-ENV GOPRIVATE=gitlab.id.vin
+ENV GOPRIVATE=gitlab.com
 RUN apk add --no-cache git
-RUN git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.id.vin/".insteadOf "https://gitlab.id.vin/"
+RUN git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.com/".insteadOf "https://gitlab.com/"
 COPY ./src /go/src
 WORKDIR /go/src/$BUILD_MODULE
 RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o ./binary \
