@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: $SERVICE_NAME
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: $SERVICE_NAME
+          image: asia.gcr.io/vincart-nonprod/${SERVICE_NAME}:${IMAGE_TAG}
+          envFrom:
+            - configMapRef:
+                name: $SERVICE_CONFIG_NAME
+            - secretRef:
+                name: $SERVICE_SECRET_NAME
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: docker-image-pull-secret

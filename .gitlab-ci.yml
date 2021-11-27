@@ -18,6 +18,8 @@ cache:
 variables:
   IMAGE_TAG: $CI_COMMIT_SHORT_SHA
   GIT_SUBMODULE_STRATEGY: recursive
+  SERVICE_PATH: /golib-sample
+  SERVICE_BASE_NAME: golib-sample
 
 stages:
   - verify
@@ -45,7 +47,7 @@ automation test:
   services:
     - name: asia.gcr.io/vinid-devops/mysql:5.7
       alias: mysql
-    - name: krisgeus/docker-kafka@sha256:15d4d3451ef3c106db75c65cfa3f4a667ee9a246ad7365e49cf6ff547165cfc5
+    - name: asia.gcr.io/vinid-devops/krisgeus/docker-kafka:latest
       alias: kafka
     - name: asia.gcr.io/vinid-devops/redis:5.0.6
       alias: redis
@@ -59,3 +61,60 @@ automation test:
     - cd $CI_PROJECT_DIR/src/core && go test ./...
     - cd $CI_PROJECT_DIR/src/adapter && go test ./...
     - cd $CI_PROJECT_DIR/src/internal && go test ./...
+
+.docker_image_build:
+  stage: docker_build
+  image: asia.gcr.io/vinid-devops/k8s-deployer:latest
+  only:
+    refs:
+      - develop
+      - master
+      - feature/test-deploy-qc
+      - feature/test-deploy-uat
+  script:
+    - gcloud builds submit --project=vincart-nonprod --config=k8s/cloudbuild.yaml \
+      --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
+
+docker internal API build:
+  extends: .docker_image_build
+  variables:
+    BUILD_MODULE: internal
+    DOCKER_FILE: docker/Dockerfile
+    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-internal
+
+docker migration build:
+  extends: .docker_image_build
+  variables:
+    BUILD_MODULE: migration
+    DOCKER_FILE: docker/Dockerfile.migration
+    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-migration
+
+.deploy_to_qc:
+  dependencies: [ ]
+  stage: deploy
+  only:
+    - feature/test-deploy-uat
+  variables:
+    NAMESPACE: qc
+    ENVIRONMENT: qc
+
+deploy internal API to QC:
+  extends: .deploy_to_qc
+  when: manual
+  variables:
+    HOST: api-qc.int.vinid.dev
+    SERVICE_NAME: $SERVICE_BASE_NAME-internal
+    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-internal
+    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-internal
+  script: |
+    cd k8s/internal && bash deploy.sh
+
+deploy migration to QC:
+  extends: .deploy_to_qc
+  when: manual
+  variables:
+    SERVICE_NAME: $SERVICE_BASE_NAME-migration
+    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-migration
+    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-migration
+  script: |
+    cd k8s/migration && bash migrate.sh
