@@ -3,9 +3,9 @@ module gitlab.com/golibs-starter/golib-sample-migration
 go 1.17
 
 require (
-	gitlab.com/golibs-starter/golib v0.9.7
-	gitlab.com/golibs-starter/golib-data v0.7.0
-	gitlab.com/golibs-starter/golib-migrate v0.0.2
+	gitlab.com/golibs-starter/golib v0.9.7-beta
+	gitlab.com/golibs-starter/golib-data v0.7.1-beta
+	gitlab.com/golibs-starter/golib-migrate v0.0.2-beta
 	go.uber.org/fx v1.15.0
 )
 
