@@ -72,8 +72,7 @@ automation test:
       - feature/test-deploy-qc
       - feature/test-deploy-uat
   script:
-    - gcloud builds submit --project=vincart-nonprod --config=k8s/cloudbuild.yaml \
-      --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
+    - gcloud builds submit --project=vincart-nonprod --config=k8s/cloudbuild.yaml --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
 
 docker internal API build:
   extends: .docker_image_build
