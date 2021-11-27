@@ -1,8 +1,8 @@
 package dto
 
 import (
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib/web/response"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib/web/response"
 	"time"
 )
 

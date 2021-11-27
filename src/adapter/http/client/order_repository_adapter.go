@@ -3,14 +3,14 @@ package client
 import (
 	"context"
 	"fmt"
-	"gitlab.id.vin/vincart/golib-sample-adapter/http/client/dto"
-	"gitlab.id.vin/vincart/golib-sample-adapter/properties"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib-sample-core/entity/request"
-	"gitlab.id.vin/vincart/golib-sample-core/exception"
-	"gitlab.id.vin/vincart/golib-sample-core/port"
-	baseEx "gitlab.id.vin/vincart/golib/exception"
-	"gitlab.id.vin/vincart/golib/web/client"
+	"gitlab.com/golibs-starter/golib-sample-adapter/http/client/dto"
+	"gitlab.com/golibs-starter/golib-sample-adapter/properties"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
+	"gitlab.com/golibs-starter/golib-sample-core/exception"
+	"gitlab.com/golibs-starter/golib-sample-core/port"
+	baseEx "gitlab.com/golibs-starter/golib/exception"
+	"gitlab.com/golibs-starter/golib/web/client"
 	"net/http"
 )
 

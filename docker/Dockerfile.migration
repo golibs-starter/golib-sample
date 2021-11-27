@@ -5,7 +5,7 @@ ARG BUILD_MODULE
 ARG BUILD_VERSION
 ARG BUILD_COMMIT_HASH
 ARG BUILD_TIME
-ARG BS_PKG=gitlab.id.vin/vincart/$BUILD_MODULE/bootstrap
+ARG BS_PKG=gitlab.com/golibs-starter/$BUILD_MODULE/bootstrap
 ENV GO111MODULE=on
 ENV GOPRIVATE=gitlab.id.vin
 RUN apk add --no-cache git

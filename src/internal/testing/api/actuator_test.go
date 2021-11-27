@@ -2,9 +2,9 @@ package api
 
 import (
 	"github.com/stretchr/testify/suite"
-	"gitlab.id.vin/vincart/golib-sample-internal/testing/base"
-	"gitlab.id.vin/vincart/golib-test"
-	"gitlab.id.vin/vincart/golib/config"
+	"gitlab.com/golibs-starter/golib-sample-internal/testing/base"
+	"gitlab.com/golibs-starter/golib-test"
+	"gitlab.com/golibs-starter/golib/config"
 	"go.uber.org/fx"
 	"net/http"
 	"testing"

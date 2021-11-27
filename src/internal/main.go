@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gitlab.id.vin/vincart/golib-gin"
-	"gitlab.id.vin/vincart/golib-sample-internal/bootstrap"
+	"gitlab.com/golibs-starter/golib-gin"
+	"gitlab.com/golibs-starter/golib-sample-internal/bootstrap"
 	"go.uber.org/fx"
 )
 

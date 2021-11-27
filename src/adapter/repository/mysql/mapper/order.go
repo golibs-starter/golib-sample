@@ -1,8 +1,8 @@
 package mapper
 
 import (
-	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/model"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
 )
 
 func ModelToOrder(order *model.Order) *entity.Order {

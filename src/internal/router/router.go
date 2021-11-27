@@ -4,12 +4,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
-	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-gin"
-	"gitlab.id.vin/vincart/golib-sample-internal/controller"
-	"gitlab.id.vin/vincart/golib-sample-internal/docs"
-	"gitlab.id.vin/vincart/golib-sample-internal/properties"
-	"gitlab.id.vin/vincart/golib/web/actuator"
+	"gitlab.com/golibs-starter/golib"
+	"gitlab.com/golibs-starter/golib-gin"
+	"gitlab.com/golibs-starter/golib-sample-internal/controller"
+	"gitlab.com/golibs-starter/golib-sample-internal/docs"
+	"gitlab.com/golibs-starter/golib-sample-internal/properties"
+	"gitlab.com/golibs-starter/golib/web/actuator"
 	"go.uber.org/fx"
 )
 

@@ -1,6 +1,6 @@
 package exception
 
-import "gitlab.id.vin/vincart/golib/exception"
+import "gitlab.com/golibs-starter/golib/exception"
 
 var (
 	OrderIdInvalid = exception.New(40008001, "Order id is invalid")

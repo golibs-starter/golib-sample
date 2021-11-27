@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib-sample-core/entity/request"
-	"gitlab.id.vin/vincart/golib-sample-core/usecase"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
+	"gitlab.com/golibs-starter/golib-sample-core/usecase"
 )
 
 type OrderService struct {

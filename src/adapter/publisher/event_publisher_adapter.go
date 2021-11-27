@@ -1,8 +1,8 @@
 package publisher
 
 import (
-	"gitlab.id.vin/vincart/golib-sample-core/port"
-	"gitlab.id.vin/vincart/golib/pubsub"
+	"gitlab.com/golibs-starter/golib-sample-core/port"
+	"gitlab.com/golibs-starter/golib/pubsub"
 )
 
 type EventPublisherAdapter struct {

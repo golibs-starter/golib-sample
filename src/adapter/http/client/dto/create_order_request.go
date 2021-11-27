@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"gitlab.id.vin/vincart/golib-sample-core/entity/request"
+	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
 )
 
 type CreateOrderRequest struct {

@@ -1,6 +1,6 @@
 package handler
 
-import "gitlab.id.vin/vincart/golib-sample-core/event"
+import "gitlab.com/golibs-starter/golib-sample-core/event"
 
 type OrderEventDummyCollector struct {
 	createdEvents []event.OrderCreatedEvent

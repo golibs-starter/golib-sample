@@ -1,10 +1,10 @@
-module gitlab.id.vin/vincart/golib-sample-adapter
+module gitlab.com/golibs-starter/golib-sample-adapter
 
 go 1.17
 
 require (
-	gitlab.id.vin/vincart/golib v0.9.7
-	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
+	gitlab.com/golibs-starter/golib v0.9.7
+	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
 	gorm.io/gorm v1.22.3
 )
 
@@ -35,4 +35,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace gitlab.id.vin/vincart/golib-sample-core => ./../core
+replace gitlab.com/golibs-starter/golib-sample-core => ./../core

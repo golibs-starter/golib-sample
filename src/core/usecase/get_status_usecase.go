@@ -2,9 +2,9 @@ package usecase
 
 import (
 	"context"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib-sample-core/exception"
-	"gitlab.id.vin/vincart/golib/web/log"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-core/exception"
+	"gitlab.com/golibs-starter/golib/web/log"
 	"strconv"
 )
 

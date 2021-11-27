@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-data"
-	"gitlab.id.vin/vincart/golib-migrate"
-	"gitlab.id.vin/vincart/golib/log"
+	"gitlab.com/golibs-starter/golib"
+	"gitlab.com/golibs-starter/golib-data"
+	"gitlab.com/golibs-starter/golib-migrate"
+	"gitlab.com/golibs-starter/golib/log"
 	"go.uber.org/fx"
 )
 

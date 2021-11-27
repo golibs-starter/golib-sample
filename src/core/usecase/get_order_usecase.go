@@ -2,9 +2,9 @@ package usecase
 
 import (
 	"context"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib-sample-core/port"
-	"gitlab.id.vin/vincart/golib/web/log"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-core/port"
+	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type GetOrderUseCase struct {

@@ -2,11 +2,11 @@ package mysql
 
 import (
 	"context"
-	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/mapper"
-	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/model"
-	"gitlab.id.vin/vincart/golib-sample-core/entity"
-	"gitlab.id.vin/vincart/golib-sample-core/entity/request"
-	"gitlab.id.vin/vincart/golib-sample-core/port"
+	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/mapper"
+	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"gitlab.com/golibs-starter/golib-sample-core/entity"
+	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
+	"gitlab.com/golibs-starter/golib-sample-core/port"
 	"gorm.io/gorm"
 )
 

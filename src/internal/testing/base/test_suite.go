@@ -1,10 +1,10 @@
 package base
 
 import (
-	"gitlab.id.vin/vincart/golib-gin"
-	"gitlab.id.vin/vincart/golib-migrate"
-	"gitlab.id.vin/vincart/golib-sample-internal/bootstrap"
-	"gitlab.id.vin/vincart/golib-test"
+	"gitlab.com/golibs-starter/golib-gin"
+	"gitlab.com/golibs-starter/golib-migrate"
+	"gitlab.com/golibs-starter/golib-sample-internal/bootstrap"
+	"gitlab.com/golibs-starter/golib-test"
 )
 
 type TestSuite struct {
