@@ -1,14 +1,5 @@
-include:
-  - project: 'devops/gitlab-ci-templates'
-    ref: master
-    file: "/common/libs-next-gen.yml"
-  - project: 'devops/gitlab-ci-templates'
-    ref: master
-    file: "before-script-templates.yml"
-
 default:
-  tags: [ vincart-nonprod ]
-  image: asia.gcr.io/vinid-devops/k8s-deployer:latest
+  image: zenthangplus/gcloud-sdk:1.0.0
 
 cache:
   key: "$CI_PROJECT_NAMESPACE:$CI_PROJECT_NAME"
@@ -32,8 +23,6 @@ stages:
   stage: verify
   allow_failure: false
   image: golang:1.17-alpine
-  tags:
-    - vincart-nonprod
   except:
     refs:
       - tags
@@ -45,11 +34,11 @@ stages:
 automation test:
   extends: .test
   services:
-    - name: asia.gcr.io/vinid-devops/mysql:5.7
+    - name: mysql:5.7
       alias: mysql
-    - name: asia.gcr.io/vinid-devops/krisgeus/docker-kafka:latest
+    - name: krisgeus/docker-kafka@sha256:15d4d3451ef3c106db75c65cfa3f4a667ee9a246ad7365e49cf6ff547165cfc5
       alias: kafka
-    - name: asia.gcr.io/vinid-devops/redis:5.0.6
+    - name: redis:5.0.6
       alias: redis
   variables:
     MYSQL_DATABASE: sample_test
@@ -64,7 +53,7 @@ automation test:
 
 .docker_image_build:
   stage: docker_build
-  image: asia.gcr.io/vinid-devops/k8s-deployer:latest
+  image: zenthangplus/gcloud-sdk:1.0.0
   only:
     refs:
       - develop
@@ -72,7 +61,7 @@ automation test:
       - feature/test-deploy-qc
       - feature/test-deploy-uat
   script:
-    - gcloud builds submit --project=vincart-nonprod --config=k8s/cloudbuild.yaml --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
+    - gcloud builds submit --project=gcp-project-sample --config=k8s/cloudbuild.yaml --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
 
 docker internal API build:
   extends: .docker_image_build

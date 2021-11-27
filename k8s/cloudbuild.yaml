@@ -3,7 +3,7 @@ steps:
     args: [
         'build',
         '-t',
-        'asia.gcr.io/vincart-nonprod/${_IMAGE_NAME}:${_IMAGE_TAG}',
+        'asia.gcr.io/gcp-project-sample/${_IMAGE_NAME}:${_IMAGE_TAG}',
         '--file=${_DOCKER_FILE}',
         '--build-arg', 'GITLAB_USER=${_GITLAB_USER}',
         '--build-arg', 'GITLAB_ACCESS_TOKEN=${_GITLAB_ACCESS_TOKEN}',
@@ -13,4 +13,4 @@ steps:
         '.'
     ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ "push", "asia.gcr.io/vincart-nonprod/${_IMAGE_NAME}:${_IMAGE_TAG}" ]
+    args: [ "push", "asia.gcr.io/gcp-project-sample/${_IMAGE_NAME}:${_IMAGE_TAG}" ]

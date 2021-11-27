@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: $SERVICE_NAME
-          image: asia.gcr.io/vincart-nonprod/$SERVICE_NAME:$IMAGE_TAG
+          image: asia.gcr.io/gcp-project-sample/$SERVICE_NAME:$IMAGE_TAG
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
