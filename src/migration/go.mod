@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	gitlab.id.vin/vincart/golib v0.9.7
-	gitlab.id.vin/vincart/golib-data v0.7.0
+	gitlab.id.vin/vincart/golib-data v0.7.1
 	gitlab.id.vin/vincart/golib-migrate v0.0.2
 	go.uber.org/fx v1.15.0
 )

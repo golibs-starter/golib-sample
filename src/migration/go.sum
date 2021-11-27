@@ -988,11 +988,10 @@ github.com/zenazn/goji v0.9.0/go.mod h1:7S9M489iMyHBNxwZnk9/EHS098H4/F6TATF2mIxt
 github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7osUAbdwCBY5Q=
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
 gitlab.com/nyarla/go-crypt v0.0.0-20160106005555-d9a5dc2b789b/go.mod h1:T3BPAOm2cqquPa0MKWeNkmOM5RQsRhkrwMWonFMN7fE=
-gitlab.id.vin/vincart/golib v0.9.3/go.mod h1:Ln2gUkDbOos6jSNEL3Fdf/3jxE3w3hnrpDTyGD0rCFM=
 gitlab.id.vin/vincart/golib v0.9.7 h1:zjMYQHvyKZsCafiI6PaUHDHrJD8cJMK3CasHDl6OotE=
 gitlab.id.vin/vincart/golib v0.9.7/go.mod h1:Ln2gUkDbOos6jSNEL3Fdf/3jxE3w3hnrpDTyGD0rCFM=
-gitlab.id.vin/vincart/golib-data v0.7.0 h1:AVJ3f6h1f0xA00jPocKygO48XnXXIC2SQ+DtJvgKBqw=
-gitlab.id.vin/vincart/golib-data v0.7.0/go.mod h1:Ne4r1GPbDeCm6VxlBiJk2IFZ8x7Wg9BdJa7T9ixK5EU=
+gitlab.id.vin/vincart/golib-data v0.7.1 h1:OzLux3H86JmUEHQTadk6cCS90vyEucTy2WXgkjCWt1g=
+gitlab.id.vin/vincart/golib-data v0.7.1/go.mod h1:HbXVi1deQuJtjvQCFFGowPpz50FPSepBnhbXNlHjM9w=
 gitlab.id.vin/vincart/golib-migrate v0.0.2 h1:0iAvDsU25QurQ40A9H+xEX1l99nVg57Z1LwwJf7mO2M=
 gitlab.id.vin/vincart/golib-migrate v0.0.2/go.mod h1:4nx2x2gy2pEnc63V8jVh6rd+uNk1NQW3Wv2EV5pT80I=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
