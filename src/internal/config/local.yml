@@ -1,8 +1,12 @@
 app:
   port: 8081
+  logging.development: true
+  swagger.enabled: true
+
   redis:
     host: localhost
     port: 6379
+
   datasource:
     driver: mysql
     host: localhost
@@ -11,19 +15,22 @@ app:
     username: root
     password: secret
     params: parseTime=true
+
   kafka:
     bootstrapServers: localhost:9092
     clientId: golib-sample
-  logging:
-    development: true
-  services:
-    order:
-      baseUrl: https://order.sample.api
-      getOrderByIdPath: /orders/%d
+    admin:
+      topics:
+        - name: c1.order.order-created
+          partitions: 1
+          replicaFactor: 1
+          retention: 72h
+    producer:
+      eventMappings:
+        OrderCreatedEvent:
+          topicName: c1.order.order-created
+          transactional: false
 
-vinid:
-  swagger:
-    enabled: true
   httpclient:
     timeout: 60s
     proxy:
@@ -31,21 +38,14 @@ vinid:
       applied_uris:
         - https://order.sample.api/
         - https://foo.local/
+
   security:
     http:
       client:
         basicAuth:
           - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
-  kafka:
-    topics:
-      - name: c1.order.order-created
-        partitions: 1
-        replicaFactor: 1
-        retention: 72h
-  messagebus:
-    event:
-      producer:
-        topicMappings:
-          OrderCreatedEvent:
-            topicName: c1.order.order-created
-            transactional: false
+
+  services:
+    order:
+      baseUrl: https://order.sample.api
+      getOrderByIdPath: /orders/%d

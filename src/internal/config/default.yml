@@ -1,7 +1,5 @@
 app:
   name: Sample Internal API
-
-vinid:
   security:
     http:
       publicUrls:

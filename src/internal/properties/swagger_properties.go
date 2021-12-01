@@ -15,5 +15,5 @@ type SwaggerProperties struct {
 }
 
 func (t SwaggerProperties) Prefix() string {
-	return "vinid.swagger"
+	return "app.swagger"
 }
