@@ -1113,6 +1113,8 @@ gitlab.id.vin/vincart/golib-migrate v0.0.2 h1:0iAvDsU25QurQ40A9H+xEX1l99nVg57Z1L
 gitlab.id.vin/vincart/golib-migrate v0.0.2/go.mod h1:4nx2x2gy2pEnc63V8jVh6rd+uNk1NQW3Wv2EV5pT80I=
 gitlab.id.vin/vincart/golib-migrate v0.0.3 h1:0bEtJCumsLq7TbOOgW/gPhbbpt3eTUXzPHTG/AL7cro=
 gitlab.id.vin/vincart/golib-migrate v0.0.3/go.mod h1:4nx2x2gy2pEnc63V8jVh6rd+uNk1NQW3Wv2EV5pT80I=
+gitlab.id.vin/vincart/golib-migrate v0.0.4 h1:aqGyZSxk6W5zj2pesHmtk4BGkcdIjUqFy3ISQewl+kc=
+gitlab.id.vin/vincart/golib-migrate v0.0.4/go.mod h1:2bKBGqtBZWfk5gwc6QGRCgUXNgnvHuq3iFax0EsbuFk=
 gitlab.id.vin/vincart/golib-security v0.8.5 h1:ndnmqSx4hAfRYvWdg0wu7Vg1XZhED8ayvLJWYaSrfMc=
 gitlab.id.vin/vincart/golib-security v0.8.5/go.mod h1:sxd6lC3hX070jpHfRpOTn2GYZmcJzn6jILChVceL/Dg=
 gitlab.id.vin/vincart/golib-security v0.8.6 h1:tePWCAGm6Fh6vr2yMYp98GxXMCph5XEihxpzoMplKhM=

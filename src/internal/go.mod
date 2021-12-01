@@ -12,7 +12,7 @@ require (
 	gitlab.id.vin/vincart/golib-data v0.7.2
 	gitlab.id.vin/vincart/golib-gin v0.5.2
 	gitlab.id.vin/vincart/golib-message-bus v0.1.4
-	gitlab.id.vin/vincart/golib-migrate v0.0.3
+	gitlab.id.vin/vincart/golib-migrate v0.0.4
 	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-security v0.8.6
