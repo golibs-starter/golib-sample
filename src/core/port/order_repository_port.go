@@ -2,8 +2,8 @@ package port
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
+    "gitlab.com/golibs-starter/golib-sample-core/entity"
+    "gitlab.com/golibs-starter/golib-sample-core/entity/request"
 )
 
 type OrderRepository interface {

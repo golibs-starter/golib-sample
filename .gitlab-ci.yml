@@ -90,7 +90,7 @@ deploy internal API to QC:
   extends: .deploy_to_qc
   when: manual
   variables:
-    HOST: api-qc.int.vinid.dev
+    HOST: golib-qc.int.sample.dev
     SERVICE_NAME: $SERVICE_BASE_NAME-internal
     SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-internal
     SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-internal
