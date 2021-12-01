@@ -1,9 +1,9 @@
 package event
 
 import (
-	"context"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib/web/event"
+    "context"
+    "gitlab.com/golibs-starter/golib-sample-core/entity"
+    "gitlab.com/golibs-starter/golib/web/event"
 )
 
 func NewOrderCreatedEvent(ctx context.Context, order *entity.Order) *OrderCreatedEvent {

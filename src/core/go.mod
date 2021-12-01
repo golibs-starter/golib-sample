@@ -1,4 +1,4 @@
-module itlab.com/golibs-starter/golib-sample-core
+module gitlab.com/golibs-starter/golib-sample-core
 
 go 1.17
 
