@@ -50,6 +50,7 @@ automation test:
     - cd $CI_PROJECT_DIR/src/core && go test ./...
     - cd $CI_PROJECT_DIR/src/adapter && go test ./...
     - cd $CI_PROJECT_DIR/src/internal && go test ./...
+    - cd $CI_PROJECT_DIR/src/public && go test ./...
 
 .docker_image_build:
   stage: docker_build
@@ -63,6 +64,13 @@ automation test:
   script:
     - gcloud builds submit --project=gcp-project-sample --config=k8s/cloudbuild.yaml --substitutions=_IMAGE_NAME=${DOCKER_IMAGE_NAME},_IMAGE_TAG=${IMAGE_TAG},_BUILD_MODULE=${BUILD_MODULE},_BUILD_COMMIT_HASH=$CI_COMMIT_SHORT_SHA,_BUILD_TIME=$(date +"%s"),_DOCKER_FILE=${DOCKER_FILE},_GITLAB_USER=${GITLAB_USER},_GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
 
+docker migration build:
+  extends: .docker_image_build
+  variables:
+    BUILD_MODULE: migration
+    DOCKER_FILE: docker/Dockerfile.migration
+    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-migration
+
 docker internal API build:
   extends: .docker_image_build
   variables:
@@ -70,12 +78,12 @@ docker internal API build:
     DOCKER_FILE: docker/Dockerfile
     DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-internal
 
-docker migration build:
+docker public API build:
   extends: .docker_image_build
   variables:
-    BUILD_MODULE: migration
-    DOCKER_FILE: docker/Dockerfile.migration
-    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-migration
+    BUILD_MODULE: public
+    DOCKER_FILE: docker/Dockerfile
+    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-public
 
 .deploy_to_qc:
   dependencies: [ ]
@@ -85,6 +93,16 @@ docker migration build:
   variables:
     NAMESPACE: qc
     ENVIRONMENT: qc
+
+deploy migration to QC:
+  extends: .deploy_to_qc
+  when: manual
+  variables:
+    SERVICE_NAME: $SERVICE_BASE_NAME-migration
+    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-migration
+    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-migration
+  script: |
+    cd k8s/migration && bash migrate.sh
 
 deploy internal API to QC:
   extends: .deploy_to_qc
@@ -97,12 +115,13 @@ deploy internal API to QC:
   script: |
     cd k8s/internal && bash deploy.sh
 
-deploy migration to QC:
+deploy public API to QC:
   extends: .deploy_to_qc
   when: manual
   variables:
-    SERVICE_NAME: $SERVICE_BASE_NAME-migration
-    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-migration
-    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-migration
+    HOST: golib-qc.sample.dev
+    SERVICE_NAME: $SERVICE_BASE_NAME-public
+    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-public
+    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-public
   script: |
-    cd k8s/migration && bash migrate.sh
+    cd k8s/public && bash deploy.sh

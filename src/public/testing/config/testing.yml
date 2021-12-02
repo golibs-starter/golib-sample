@@ -1,0 +1,79 @@
+app:
+  port: -1 # -1 means random port
+  logging.development: true
+
+  datasource:
+    driver: mysql
+    host: localhost
+    port: 3306
+    database: sample_test
+    username: root
+    password: secret
+    params: parseTime=true
+    migrationSource: file://../../../migration/migrations
+
+  kafka:
+    bootstrapServers: localhost:9092
+    clientId: golib-sample-test
+    admin:
+      topics:
+        - name: c1.order.order-created.test
+          partitions: 1
+          replicaFactor: 1
+          retention: 72h
+    producer:
+      flushMessages: 1
+      flushFrequency: 1s
+      eventMappings:
+        OrderCreatedEvent:
+          topicName: c1.order.order-created.test
+          transactional: false
+    consumer:
+      initialOffset: -2
+      handlerMappings:
+        OrderCreatedEventDummyHandler:
+          topic: c1.order.order-created.test
+          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.local
+          enable: true
+
+  security:
+    http:
+      jwt:
+        publicKey: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAibfYgV1ACadMfuvl5VsR
+          V0H/llbi+zB0f6kTSQ0VwzNR9eYbn8vFUaf3RXA8rxdICtKq8dB23F+2+GICIkjt
+          cHwC1DtcvfxbpOPLYCrZKLntlzRR2UJOzKTq0JP+ea/zydEYIHR9uVIZarw1vz9R
+          LqtiIvZZFUQtDmnc9f7R9kp6XmZgoqg8/hMZ7SF9GvDmdDZSjLCoKrKXHO3a2djn
+          L7FwbiOr8Qx2Zlbm+rzZ3ovIXvskIJqg/S7PFg55Xt8oxL4NxaqzxiEVnZMqEGba
+          pLzetqErEg73L93r7DdnSc4O55qTrRxXMWE+pRx1jWAFdcQL0kZ1TJf/OnNXKKHw
+          aQIDAQAB
+          -----END PUBLIC KEY-----
+        privateKey: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpAIBAAKCAQEAibfYgV1ACadMfuvl5VsRV0H/llbi+zB0f6kTSQ0VwzNR9eYb
+          n8vFUaf3RXA8rxdICtKq8dB23F+2+GICIkjtcHwC1DtcvfxbpOPLYCrZKLntlzRR
+          2UJOzKTq0JP+ea/zydEYIHR9uVIZarw1vz9RLqtiIvZZFUQtDmnc9f7R9kp6XmZg
+          oqg8/hMZ7SF9GvDmdDZSjLCoKrKXHO3a2djnL7FwbiOr8Qx2Zlbm+rzZ3ovIXvsk
+          IJqg/S7PFg55Xt8oxL4NxaqzxiEVnZMqEGbapLzetqErEg73L93r7DdnSc4O55qT
+          rRxXMWE+pRx1jWAFdcQL0kZ1TJf/OnNXKKHwaQIDAQABAoIBAQCArhvKpIsVehDr
+          9xeUuwb09WIP45erBZeVQTIX6/YNsoI+tYfSQ+BXcA6H/1t0btiN5FJ+KD8noveg
+          FlPQHTxfAkDSdbUugAJRi9eYP/ExMKljwytHScG/Tclqox4ALfwo8wsMKEzhQGkn
+          Zj0COfNtHA5ShMSwLke7VAd2g2dELOCDS7SqxOX2axMX6FiO2rGIPOEP64sPWA4G
+          0rXlIuaTKRiNRw4oD5CdsOqBdFNZM+VTzRftHT5vKoq/8hHZZaDY8MWo+JYoigqv
+          TT3m/l+2D1RhlykL/cPmX/MngCG/U1rGDFA+JmAmzdEH7Q9kUL5xeWVpIxyqaQtI
+          m4SlaLwBAoGBAPMpFKz+Y7m+UnP1zzoDSAoq/2CveU1kQb+MdGjeMayLEeyQUGCK
+          X1B8YGq+axsSoJ05d1edaJdcXXni16qykES64mnvXZBCEpYOYcqj1/2QECp2D2Fn
+          I8N2IlObsDvM9YqmnJV8uIUGuF2z3vwd79mUFdTnKKo6AvXUzGgkJuVhAoGBAJD9
+          cwvB2/72cCh4Zvqa5gMNcH9DfJJuZvQY24SUKAIDWw4/2jySezZ6+KRCNd21oZBI
+          msa77dAebkM2mvLyG9hjnaxkPyER197AztLoESbOnNddbxQEnx3V6Qocgh1ThUgQ
+          mhoJs1eSQxuuG8gw6dBVxEJP9zluw7OFkCLV7+AJAoGBANCkzVLrLVLx1foeT2Pt
+          8OCYqGyj5KfdgPUFZdWd4m21HvonknBkCwkaz/iHz4t5XkvKRXbuYBKQdLzjQj77
+          3QK8gQ55D4V6zEvpp0ujbu/pr5VfnC7tuyg6s5WeH4gQhBgmgnFahVHPxF7SumEG
+          pwnBIUJ/3srB4Exj/cjWTHHBAoGAI1ytYoC1l0mjsTssYpLE5pmwhll/WHd0xLQL
+          VhqMZ3FKE/+eyocvZeo4GlfLq3dRIE+U8EOFjOzfF6WJxRcnk284VYNdokMn0zxT
+          NT1EcaKSvjQbk1ZNOImjfMPXOC/WoezqqM8U3pbdpzKftAO6AwXoCARY17kcIfzB
+          Wr2y84ECgYAIB7C/bFEZpllyo+NeWMHnEqavvymiDotpMWdB3t/dZs50JahTQn1+
+          LSb3U5FtkHjBaULxK9Wk2btXvbSZ4HK0cdCf/FHnKpuPoguWOsHrQcVqxzN5XaR1
+          zBSVNXIuxry3AXWq8DDJ/GGXdsxcr0xZ2NGn3GAj0op8cvENes88Wg==
+          -----END RSA PRIVATE KEY-----

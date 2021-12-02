@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Sample internal API",
+        "title": "Sample Public API",
         "contact": {},
         "version": "1.0.0"
     },
@@ -10,7 +10,7 @@
             "post": {
                 "security": [
                     {
-                        "BasicAuth": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -23,6 +23,17 @@
                     "OrderController"
                 ],
                 "summary": "Create order",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/resource.CreateOrderRequest"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -55,7 +66,7 @@
             "get": {
                 "security": [
                     {
-                        "BasicAuth": []
+                        "BearerAuth": []
                     }
                 ],
                 "consumes": [
@@ -104,63 +115,17 @@
                     }
                 }
             }
-        },
-        "/v1/statuses/{code}": {
-            "get": {
-                "security": [
-                    {
-                        "BasicAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "StatusController"
-                ],
-                "summary": "API return status code",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "status code",
-                        "name": "code",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/response.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/resource.Status"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/response.Response"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
+        "resource.CreateOrderRequest": {
+            "type": "object",
+            "properties": {
+                "total_amount": {
+                    "type": "integer"
+                }
+            }
+        },
         "resource.Order": {
             "type": "object",
             "properties": {
@@ -172,14 +137,9 @@
                 },
                 "total_amount": {
                     "type": "integer"
-                }
-            }
-        },
-        "resource.Status": {
-            "type": "object",
-            "properties": {
-                "http_code": {
-                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
                 }
             }
         },
@@ -205,8 +165,10 @@
         }
     },
     "securityDefinitions": {
-        "BasicAuth": {
-            "type": "basic"
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

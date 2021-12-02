@@ -1,0 +1,13 @@
+app:
+  name: Sample Public API
+  security.jwt.type: JWT_TOKEN_MOBILE
+  security:
+    http:
+      publicUrls:
+        - /actuator/health
+        - /actuator/info
+        - /swagger/*
+      protectedUrls:
+        - { urlPattern: "/v1/orders/*", method: GET, roles: [ "MOBILE_APP" ], unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
+        - { urlPattern: "/v1/orders", method: POST, roles: [ "MOBILE_APP" ], unauthorizedWwwAuthenticateHeaders: [ "Bearer" ] }
+

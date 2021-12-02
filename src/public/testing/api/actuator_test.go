@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/stretchr/testify/suite"
-	"gitlab.com/golibs-starter/golib-sample-internal/testing/base"
+	"gitlab.com/golibs-starter/golib-sample-public/testing/base"
 	"gitlab.com/golibs-starter/golib-test"
 	"gitlab.com/golibs-starter/golib/config"
 	"go.uber.org/fx"
