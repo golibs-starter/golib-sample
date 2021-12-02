@@ -1,6 +1,6 @@
 package resource
 
-import "gitlab.id.vin/vincart/golib-sample-core/entity/request"
+import "gitlab.com/golibs-starter/golib-sample-core/entity/request"
 
 type CreateOrderRequest struct {
 	TotalAmount int64 `json:"total_amount"`

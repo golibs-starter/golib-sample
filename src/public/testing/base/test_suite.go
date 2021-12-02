@@ -3,12 +3,12 @@ package base
 import (
 	"crypto/rsa"
 	"github.com/dgrijalva/jwt-go"
-	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-gin"
-	"gitlab.id.vin/vincart/golib-migrate"
-	"gitlab.id.vin/vincart/golib-sample-public/bootstrap"
-	"gitlab.id.vin/vincart/golib-sample-public/testing/properties"
-	"gitlab.id.vin/vincart/golib-test"
+	"gitlab.com/golibs-starter/golib"
+	"gitlab.com/golibs-starter/golib-gin"
+	"gitlab.com/golibs-starter/golib-migrate"
+	"gitlab.com/golibs-starter/golib-sample-public/bootstrap"
+	"gitlab.com/golibs-starter/golib-sample-public/testing/properties"
+	"gitlab.com/golibs-starter/golib-test"
 	"go.uber.org/fx"
 	"time"
 )

@@ -119,7 +119,7 @@ deploy public API to QC:
   extends: .deploy_to_qc
   when: manual
   variables:
-    HOST: api-qc.vinid.dev
+    HOST: golib-qc.sample.dev
     SERVICE_NAME: $SERVICE_BASE_NAME-public
     SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-public
     SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-public

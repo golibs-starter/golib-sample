@@ -1,6 +1,6 @@
 package properties
 
-import "gitlab.id.vin/vincart/golib/config"
+import "gitlab.com/golibs-starter/golib/config"
 
 type JwtTestProperties struct {
 	PrivateKey string

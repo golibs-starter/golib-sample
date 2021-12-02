@@ -2,13 +2,13 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.id.vin/vincart/golib-sample-adapter/service"
-	"gitlab.id.vin/vincart/golib-sample-core/exception"
-	"gitlab.id.vin/vincart/golib-sample-public/resource"
-	"gitlab.id.vin/vincart/golib-security/web/context"
-	baseEx "gitlab.id.vin/vincart/golib/exception"
-	"gitlab.id.vin/vincart/golib/web/log"
-	"gitlab.id.vin/vincart/golib/web/response"
+	"gitlab.com/golibs-starter/golib-sample-adapter/service"
+	"gitlab.com/golibs-starter/golib-sample-core/exception"
+	"gitlab.com/golibs-starter/golib-sample-public/resource"
+	"gitlab.com/golibs-starter/golib-security/web/context"
+	baseEx "gitlab.com/golibs-starter/golib/exception"
+	"gitlab.com/golibs-starter/golib/web/log"
+	"gitlab.com/golibs-starter/golib/web/response"
 	"strconv"
 )
 

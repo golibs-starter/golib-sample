@@ -2,9 +2,9 @@ package handler
 
 import (
 	"encoding/json"
-	"gitlab.id.vin/vincart/golib-message-bus/kafka/core"
-	"gitlab.id.vin/vincart/golib-sample-core/event"
-	"gitlab.id.vin/vincart/golib/web/log"
+	"gitlab.com/golibs-starter/golib-message-bus/kafka/core"
+	"gitlab.com/golibs-starter/golib-sample-core/event"
+	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type OrderCreatedEventDummyHandler struct {
