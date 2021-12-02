@@ -5,9 +5,10 @@ import (
 	"gitlab.id.vin/vincart/golib-sample-core/entity"
 )
 
-func ModelToOrder(order *model.Order) *entity.Order {
+func ModelToOrderEntity(order *model.Order) *entity.Order {
 	return &entity.Order{
 		Id:          order.Id,
+		UserId:      order.UserId,
 		TotalAmount: order.TotalAmount,
 		CreatedAt:   order.CreatedAt,
 	}

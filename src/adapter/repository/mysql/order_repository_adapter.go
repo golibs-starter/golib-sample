@@ -24,13 +24,14 @@ func (o OrderRepositoryAdapter) FindById(ctx context.Context, id int64) (*entity
 	if result.Error != nil {
 		return nil, o.handleError(result.Error)
 	}
-	return mapper.ModelToOrder(&orderModel), nil
+	return mapper.ModelToOrderEntity(&orderModel), nil
 }
 
 func (o OrderRepositoryAdapter) CreateOrder(ctx context.Context, req *request.CreateOrderRequest) (*entity.Order, error) {
 	orderModel := model.Order{
+		UserId:      req.UserId,
 		TotalAmount: req.TotalAmount,
 	}
 	o.db.Create(&orderModel)
-	return mapper.ModelToOrder(&orderModel), nil
+	return mapper.ModelToOrderEntity(&orderModel), nil
 }

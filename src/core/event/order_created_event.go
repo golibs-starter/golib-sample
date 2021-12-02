@@ -27,14 +27,16 @@ func (a OrderCreatedEvent) String() string {
 }
 
 type OrderMessage struct {
-	Id          int   `json:"id"`
-	TotalAmount int64 `json:"total_amount"`
-	CreatedAt   int64 `json:"created_at"`
+	Id          int    `json:"id"`
+	UserId      string `json:"user_id"`
+	TotalAmount int64  `json:"total_amount"`
+	CreatedAt   int64  `json:"created_at"`
 }
 
 func OrderEntityToMessage(order *entity.Order) *OrderMessage {
 	return &OrderMessage{
 		Id:          order.Id,
+		UserId:      order.UserId,
 		TotalAmount: order.TotalAmount,
 		CreatedAt:   order.CreatedAt.Unix(),
 	}

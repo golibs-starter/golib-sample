@@ -7,8 +7,8 @@ import (
 	golibmsg "gitlab.id.vin/vincart/golib-message-bus"
 	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/model"
 	"gitlab.id.vin/vincart/golib-sample-core/event"
-	"gitlab.id.vin/vincart/golib-sample-internal/testing/base"
-	"gitlab.id.vin/vincart/golib-sample-internal/testing/handler"
+	"gitlab.id.vin/vincart/golib-sample-public/testing/base"
+	"gitlab.id.vin/vincart/golib-sample-public/testing/handler"
 	"gitlab.id.vin/vincart/golib-test"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
@@ -19,14 +19,12 @@ import (
 
 type CreateOrderControllerTest struct {
 	*base.TestSuite
-	authorization  string
 	db             *gorm.DB
 	dummyCollector *handler.OrderEventDummyCollector
 }
 
 func TestCreateOrderControllerTest(t *testing.T) {
-	// internal_service:secret
-	s := CreateOrderControllerTest{authorization: "aW50ZXJuYWxfc2VydmljZTpzZWNyZXQ="}
+	s := CreateOrderControllerTest{}
 	s.TestSuite = base.NewTestSuite(
 		golibtest.WithTestingDir(".."),
 		golibtest.WithFxOption(golibmsg.KafkaConsumerOpt()),
@@ -43,7 +41,7 @@ func TestCreateOrderControllerTest(t *testing.T) {
 func (s CreateOrderControllerTest) TestCreateOrder_GiveValidBody_WhenRepoResponseSuccess_ShouldReturnSuccess() {
 	resp := golibtest.NewDefaultHttpClient(s.T()).Do(
 		golibtest.NewRequestBuilder(s.T()).
-			WithBasicAuthorization(s.authorization).
+			WithBearerAuthorization(s.CreateJwtToken("10")).
 			WithBodyString(`{"total_amount": 85000}`).
 			Post(s.URL("/v1/orders")),
 	)
@@ -52,11 +50,13 @@ func (s CreateOrderControllerTest) TestCreateOrder_GiveValidBody_WhenRepoRespons
 	var actualOrder model.Order
 	assert.NoError(s.T(), s.db.First(&actualOrder).Error)
 	assert.NotNil(s.T(), actualOrder)
+	assert.EqualValues(s.T(), "10", actualOrder.UserId)
 	assert.EqualValues(s.T(), 85000, actualOrder.TotalAmount)
 
 	golibtest.NewRestAssured(s.T(), resp).
 		Status(http.StatusOK).
 		Body("data.id", actualOrder.Id).
+		Body("data.user_id", actualOrder.UserId).
 		Body("data.total_amount", actualOrder.TotalAmount).
 		BodyCb("data.created_at", func(value interface{}) {
 			assert.InDelta(s.T(), actualOrder.CreatedAt.Unix(), value, 1)
@@ -75,6 +75,7 @@ func (s CreateOrderControllerTest) TestCreateOrder_GiveValidBody_WhenRepoRespons
 	assert.IsType(s.T(), &event.OrderMessage{}, actualEvent.Payload())
 	actualEventPayload := actualEvent.Payload().(*event.OrderMessage)
 	assert.EqualValues(s.T(), actualOrder.Id, actualEventPayload.Id)
+	assert.EqualValues(s.T(), actualOrder.UserId, actualEventPayload.UserId)
 	assert.EqualValues(s.T(), actualOrder.TotalAmount, actualEventPayload.TotalAmount)
 	assert.InDelta(s.T(), actualOrder.CreatedAt.Unix(), actualEventPayload.CreatedAt, 1)
 }
