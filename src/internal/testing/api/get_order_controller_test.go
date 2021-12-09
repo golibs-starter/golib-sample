@@ -4,11 +4,10 @@ import (
 	"fmt"
 	assert "github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"gitlab.id.vin/vincart/golib-sample-adapter/properties"
 	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/model"
 	"gitlab.id.vin/vincart/golib-sample-core/exception"
 	"gitlab.id.vin/vincart/golib-sample-internal/testing/base"
-	golibtest "gitlab.id.vin/vincart/golib-test"
+	"gitlab.id.vin/vincart/golib-test"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"net/http"
@@ -20,7 +19,6 @@ type GetOrderControllerTest struct {
 	*base.TestSuite
 	authorization string
 	db            *gorm.DB
-	props         *properties.OrderRepositoryProperties
 }
 
 func TestGetOrderControllerTest(t *testing.T) {

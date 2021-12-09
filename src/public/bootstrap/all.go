@@ -5,7 +5,6 @@ import (
 	"gitlab.id.vin/vincart/golib"
 	"gitlab.id.vin/vincart/golib-data"
 	"gitlab.id.vin/vincart/golib-message-bus"
-	adapterProps "gitlab.id.vin/vincart/golib-sample-adapter/properties"
 	"gitlab.id.vin/vincart/golib-sample-adapter/publisher"
 	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql"
 	"gitlab.id.vin/vincart/golib-sample-adapter/service"
@@ -39,7 +38,6 @@ func All() []fx.Option {
 
 		// Provide all application properties
 		golib.ProvideProps(properties.NewSwaggerProperties),
-		golib.ProvideProps(adapterProps.NewOrderRepositoryProperties),
 
 		// Provide port's implements
 		fx.Provide(publisher.NewEventPublisherAdapter),

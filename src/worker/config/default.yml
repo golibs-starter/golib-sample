@@ -1,0 +1,9 @@
+app:
+  name: Sample Worker
+
+vinid:
+  security:
+    http:
+      publicUrls:
+        - /actuator/health
+        - /actuator/info

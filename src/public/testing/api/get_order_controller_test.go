@@ -4,7 +4,6 @@ import (
 	"fmt"
 	assert "github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"gitlab.id.vin/vincart/golib-sample-adapter/properties"
 	"gitlab.id.vin/vincart/golib-sample-adapter/repository/mysql/model"
 	"gitlab.id.vin/vincart/golib-sample-core/exception"
 	"gitlab.id.vin/vincart/golib-sample-public/testing/base"
@@ -18,8 +17,7 @@ import (
 
 type GetOrderControllerTest struct {
 	*base.TestSuite
-	db    *gorm.DB
-	props *properties.OrderRepositoryProperties
+	db *gorm.DB
 }
 
 func TestGetOrderControllerTest(t *testing.T) {
