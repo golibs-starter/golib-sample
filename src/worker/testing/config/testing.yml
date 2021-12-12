@@ -1,0 +1,33 @@
+app:
+  port: -1 # -1 means random port
+  logging.development: true
+
+  kafka:
+    bootstrapServers: localhost:9092
+    clientId: golib-sample-test
+    producer:
+      eventMappings:
+        OrderCreatedEvent:
+          topicName: c1.order.order-created.test
+          transactional: false
+    consumer:
+      handlerMappings:
+        OrderCreatedEventDummyHandler:
+          topic: c1.order.order-created.test
+          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.local
+          enable: true
+        SendOrderToDeliveryProviderHandler:
+          topic: c1.order.order-created.test
+          groupId: c1.order.order-created.SendOrderToDeliveryProviderHandler.local
+          enable: true
+
+  security:
+    http:
+      client:
+        basicAuth:
+          - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
+
+  services:
+    delivery:
+      baseUrl: https://order.sample.api/v1
+      createOrderPath: /orders

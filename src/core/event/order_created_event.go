@@ -4,6 +4,7 @@ import (
     "context"
     "gitlab.com/golibs-starter/golib-sample-core/entity"
     "gitlab.com/golibs-starter/golib/web/event"
+	"time"
 )
 
 func NewOrderCreatedEvent(ctx context.Context, order *entity.Order) *OrderCreatedEvent {
@@ -39,5 +40,14 @@ func OrderEntityToMessage(order *entity.Order) *OrderMessage {
 		UserId:      order.UserId,
 		TotalAmount: order.TotalAmount,
 		CreatedAt:   order.CreatedAt.Unix(),
+	}
+}
+
+func OrderMessageToEntity(message *OrderMessage) *entity.Order {
+	return &entity.Order{
+		Id:          message.Id,
+		UserId:      message.UserId,
+		TotalAmount: message.TotalAmount,
+		CreatedAt:   time.Unix(message.CreatedAt, 0),
 	}
 }

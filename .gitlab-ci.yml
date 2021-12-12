@@ -51,6 +51,7 @@ automation test:
     - cd $CI_PROJECT_DIR/src/adapter && go test ./...
     - cd $CI_PROJECT_DIR/src/internal && go test ./...
     - cd $CI_PROJECT_DIR/src/public && go test ./...
+    - cd $CI_PROJECT_DIR/src/worker && go test ./...
 
 .docker_image_build:
   stage: docker_build
@@ -84,6 +85,13 @@ docker public API build:
     BUILD_MODULE: public
     DOCKER_FILE: docker/Dockerfile
     DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-public
+
+docker worker API build:
+  extends: .docker_image_build
+  variables:
+    BUILD_MODULE: worker
+    DOCKER_FILE: docker/Dockerfile
+    DOCKER_IMAGE_NAME: $SERVICE_BASE_NAME-worker
 
 .deploy_to_qc:
   dependencies: [ ]
@@ -125,3 +133,14 @@ deploy public API to QC:
     SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-public
   script: |
     cd k8s/public && bash deploy.sh
+
+deploy worker API to QC:
+  extends: .deploy_to_qc
+  when: manual
+  variables:
+    HOST: api-qc.int.vinid.dev
+    SERVICE_NAME: $SERVICE_BASE_NAME-worker
+    SERVICE_CONFIG_NAME: $SERVICE_BASE_NAME-worker
+    SERVICE_SECRET_NAME: $SERVICE_BASE_NAME-worker
+  script: |
+    cd k8s/worker && bash deploy.sh

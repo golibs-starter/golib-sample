@@ -1,0 +1,24 @@
+app:
+  port: 8081
+  logging.development: true
+
+  kafka:
+    bootstrapServers: localhost:9092
+    clientId: golib-sample
+    consumer:
+      handlerMappings:
+        SendOrderToDeliveryProviderHandler:
+          topic: c1.order.order-created
+          groupId: c1.order.order-created.SendOrderToDeliveryProviderHandler.local
+          enable: true
+
+  security:
+    http:
+      client:
+        basicAuth:
+          - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
+
+  services:
+    delivery:
+      baseUrl: https://order.sample.api/v1
+      createOrderPath: /orders

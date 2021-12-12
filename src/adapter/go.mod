@@ -3,7 +3,7 @@ module gitlab.com/golibs-starter/golib-sample-adapter
 go 1.17
 
 require (
-	gitlab.com/golibs-starter/golib v0.9.8-beta
+	gitlab.com/golibs-starter/golib v0.9.9-beta
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
 	gorm.io/gorm v1.22.3
 )
