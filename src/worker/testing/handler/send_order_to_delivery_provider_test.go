@@ -1,50 +1,48 @@
 package handler
 
 import (
-	"context"
-	"github.com/jarcoal/httpmock"
-	assert "github.com/stretchr/testify/require"
-	"github.com/stretchr/testify/suite"
-	"gitlab.id.vin/vincart/golib-message-bus"
-	"gitlab.id.vin/vincart/golib-sample-core/event"
-	"gitlab.id.vin/vincart/golib-sample-worker/testing/base"
-	"gitlab.id.vin/vincart/golib-sample-worker/testing/dummy"
-	"gitlab.id.vin/vincart/golib-test"
-	"gitlab.id.vin/vincart/golib/pubsub"
-	"gitlab.id.vin/vincart/golib/web/constant"
-	webContext "gitlab.id.vin/vincart/golib/web/context"
-	webEvent "gitlab.id.vin/vincart/golib/web/event"
-	"go.uber.org/fx"
-	"net/http"
-	"testing"
-	"time"
+    "context"
+    "github.com/jarcoal/httpmock"
+    assert "github.com/stretchr/testify/require"
+    "github.com/stretchr/testify/suite"
+    "gitlab.com/golibs-starter/golib-sample-core/event"
+    "gitlab.com/golibs-starter/golib-sample-worker/testing/base"
+    "gitlab.com/golibs-starter/golib-sample-worker/testing/dummy"
+    "gitlab.com/golibs-starter/golib/pubsub"
+    "gitlab.com/golibs-starter/golib/web/constant"
+    webContext "gitlab.com/golibs-starter/golib/web/context"
+    webEvent "gitlab.com/golibs-starter/golib/web/event"
+    "go.uber.org/fx"
+    "net/http"
+    "testing"
+    "time"
 )
 
 type SendOrderToDeliveryProviderHandlerTest struct {
-	*base.TestSuite
-	httpClient *http.Client
-	collector  *dummy.OrderEventDummyCollector
+    *base.TestSuite
+    httpClient *http.Client
+    collector  *dummy.OrderEventDummyCollector
 }
 
 func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
-	s := SendOrderToDeliveryProviderHandlerTest{}
-	s.TestSuite = base.NewTestSuite(
-		golibtest.WithTestingDir(".."),
-		golibtest.WithFxOption(golibmsg.KafkaProducerOpt()),
-		golibtest.WithFxOption(golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler)),
-		golibtest.WithFxOption(fx.Provide(dummy.NewOrderEventDummyCollector)),
-		golibtest.WithFxPopulate(&s.httpClient, &s.collector),
-	)
-	suite.Run(t, &s)
+    s := SendOrderToDeliveryProviderHandlerTest{}
+    s.TestSuite = base.NewTestSuite(
+        golibtest.WithTestingDir(".."),
+        golibtest.WithFxOption(golibmsg.KafkaProducerOpt()),
+        golibtest.WithFxOption(golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler)),
+        golibtest.WithFxOption(fx.Provide(dummy.NewOrderEventDummyCollector)),
+        golibtest.WithFxPopulate(&s.httpClient, &s.collector),
+    )
+    suite.Run(t, &s)
 }
 
 func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
-	httpmock.ActivateNonDefault(s.httpClient)
-	defer httpmock.DeactivateAndReset()
+    httpmock.ActivateNonDefault(s.httpClient)
+    defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "https://order.sample.api/v1/orders",
-		func(req *http.Request) (*http.Response, error) {
-			return httpmock.NewStringResponse(http.StatusCreated, `{
+    httpmock.RegisterResponder("POST", "https://order.sample.api/v1/orders",
+        func(req *http.Request) (*http.Response, error) {
+            return httpmock.NewStringResponse(http.StatusCreated, `{
  "meta": {
    "code": 201,
    "message": "Successful"
@@ -54,36 +52,36 @@ func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendT
    "created_at": 1637415974
  }
 }`), nil
-		},
-	)
+        },
+    )
 
-	requestAttrs := webContext.RequestAttributes{
-		DeviceId:        "TEST-DEVICE-ID",
-		DeviceSessionId: "TEST-DEVICE-SESSION-ID",
-		CorrelationId:   "TEST-REQUEST-ID",
-		SecurityAttributes: webContext.SecurityAttributes{
-			UserId:            "test-user-id",
-			TechnicalUsername: "test-technical-username",
-		},
-	}
-	ctx := context.WithValue(context.Background(), constant.ContextReqAttribute, &requestAttrs)
-	e := &event.OrderCreatedEvent{
-		AbstractEvent: webEvent.NewAbstractEvent(ctx, "OrderCreatedEvent"),
-		PayloadData: &event.OrderMessage{
-			Id:          2,
-			UserId:      "10",
-			TotalAmount: 85000,
-			CreatedAt:   time.Now().Unix(),
-		},
-	}
-	pubsub.Publish(e)
+    requestAttrs := webContext.RequestAttributes{
+        DeviceId:        "TEST-DEVICE-ID",
+        DeviceSessionId: "TEST-DEVICE-SESSION-ID",
+        CorrelationId:   "TEST-REQUEST-ID",
+        SecurityAttributes: webContext.SecurityAttributes{
+            UserId:            "test-user-id",
+            TechnicalUsername: "test-technical-username",
+        },
+    }
+    ctx := context.WithValue(context.Background(), constant.ContextReqAttribute, &requestAttrs)
+    e := &event.OrderCreatedEvent{
+        AbstractEvent: webEvent.NewAbstractEvent(ctx, "OrderCreatedEvent"),
+        PayloadData: &event.OrderMessage{
+            Id:          2,
+            UserId:      "10",
+            TotalAmount: 85000,
+            CreatedAt:   time.Now().Unix(),
+        },
+    }
+    pubsub.Publish(e)
 
-	golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)
-	time.Sleep(200 * time.Millisecond)
-	assert.Len(s.T(), s.collector.CreatedEvents(), 1)
-	expectedEvent := s.collector.CreatedEvents()[0]
-	assert.Equal(s.T(), "OrderCreatedEvent", expectedEvent.Name())
-	assert.IsType(s.T(), &event.OrderMessage{}, expectedEvent.Payload())
+    golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)
+    time.Sleep(200 * time.Millisecond)
+    assert.Len(s.T(), s.collector.CreatedEvents(), 1)
+    expectedEvent := s.collector.CreatedEvents()[0]
+    assert.Equal(s.T(), "OrderCreatedEvent", expectedEvent.Name())
+    assert.IsType(s.T(), &event.OrderMessage{}, expectedEvent.Payload())
 
-	assert.Equal(s.T(), 1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
+    assert.Equal(s.T(), 1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
 }

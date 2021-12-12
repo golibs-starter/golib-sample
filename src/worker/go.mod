@@ -1,4 +1,4 @@
-module gitlab.id.vin/vincart/golib-sample-worker
+module gitlab.com/golibs-starter/golib-sample-worker
 
 go 1.17
 
@@ -6,13 +6,13 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/stretchr/testify v1.7.0
-	gitlab.id.vin/vincart/golib v0.9.9
-	gitlab.id.vin/vincart/golib-gin v0.5.2
-	gitlab.id.vin/vincart/golib-message-bus v0.1.4
-	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
-	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.id.vin/vincart/golib-security v0.8.7
-	gitlab.id.vin/vincart/golib-test v0.2.5
+	gitlab.com/golibs-starter/golib v0.9.9-beta
+	gitlab.com/golibs-starter/golib-gin v0.5.2-beta
+	gitlab.com/golibs-starter/golib-message-bus v0.1.4-beta
+	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
+	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
+	gitlab.com/golibs-starter/golib-security v0.8.7-beta // indirect
+	gitlab.com/golibs-starter/golib-test v0.2.5-beta // indirect
 	go.uber.org/fx v1.13.1
 )
 
@@ -80,6 +80,6 @@ require (
 )
 
 replace (
-	gitlab.id.vin/vincart/golib-sample-adapter => ./../adapter
-	gitlab.id.vin/vincart/golib-sample-core => ./../core
+	gitlab.com/golibs-starter/golib-sample-adapter => ./../adapter
+	gitlab.com/golibs-starter/golib-sample-core => ./../core
 )

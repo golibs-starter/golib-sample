@@ -1092,8 +1092,9 @@ github.com/yvasiyarov/newrelic_platform_go v0.0.0-20140908184405-b21fdbd4370f/go
 github.com/zenazn/goji v0.9.0/go.mod h1:7S9M489iMyHBNxwZnk9/EHS098H4/F6TATF2mIxtB1Q=
 github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7osUAbdwCBY5Q=
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
-gitlab.com/golibs-starter/golib v0.9.8-beta h1:Nf/5vTRJe+OH9E+OJz3nA9NOsAEAcV2XSQF3I2wqkNU=
 gitlab.com/golibs-starter/golib v0.9.8-beta/go.mod h1:zq/DHoPbzgxJw70R/7uuP3XeEVZun7Em3mv25OxIH98=
+gitlab.com/golibs-starter/golib v0.9.9-beta h1:VX8GgRlIDmLTBy3ojdKLIQmGivDe5Z94+ngTWPnh0jk=
+gitlab.com/golibs-starter/golib v0.9.9-beta/go.mod h1:zq/DHoPbzgxJw70R/7uuP3XeEVZun7Em3mv25OxIH98=
 gitlab.com/golibs-starter/golib-data v0.7.2-beta h1:h2L2aEsHZvwTcyUpul3F7OkYXdoKuCBgCuc7cID/bgI=
 gitlab.com/golibs-starter/golib-data v0.7.2-beta/go.mod h1:StzkQanb1JCWFrMJDSecZIhu+VwbtBWTrfHYL2m6yuc=
 gitlab.com/golibs-starter/golib-gin v0.5.2-beta h1:fToOQlYea9mpwevzzAXYocMOouF9hh/oYmlwzPQ+jQM=
@@ -1104,8 +1105,8 @@ gitlab.com/golibs-starter/golib-migrate v0.0.4-beta h1:nRpTWQHqp95LNbRx15FRQBKHH
 gitlab.com/golibs-starter/golib-migrate v0.0.4-beta/go.mod h1:k/rmDAO+10NFTeYr8wpYmx0iSSweCLoTyXY40nH6U70=
 gitlab.com/golibs-starter/golib-security v0.8.7-beta h1:fQas0S7CzmxekS6QlM1FAWh2fAIcRdbrUmQPLYuq8NE=
 gitlab.com/golibs-starter/golib-security v0.8.7-beta/go.mod h1:JzVm0XIyvf7bI9i5EAA0nQaYcrGRACOiTYGpLM0bEhw=
-gitlab.com/golibs-starter/golib-test v0.2.4-beta h1:3mPmd5Noi1cOrlul5EVPBCj1F6c9QjVHLisKEK8R3aI=
-gitlab.com/golibs-starter/golib-test v0.2.4-beta/go.mod h1:UajIm+bp5Y/Njfvs7OEpFaN1YyF7t3ZfmeAiUMOH8cw=
+gitlab.com/golibs-starter/golib-test v0.2.5-beta h1:T3pP87ukJRnSc8+2enW0sCWqZEnIh/QuUD8CtkbSz5M=
+gitlab.com/golibs-starter/golib-test v0.2.5-beta/go.mod h1:srr8HKFrlFzFDGJB4icwPZ/3yk2vZqZlJx6mnES7YEw=
 gitlab.com/nyarla/go-crypt v0.0.0-20160106005555-d9a5dc2b789b/go.mod h1:T3BPAOm2cqquPa0MKWeNkmOM5RQsRhkrwMWonFMN7fE=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
