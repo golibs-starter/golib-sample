@@ -44,7 +44,6 @@ func All() []fx.Option {
 
 		// Provide all application properties
 		golib.ProvideProps(properties.NewSwaggerProperties),
-		golib.ProvideProps(adapterProps.NewOrderRepositoryProperties),
 
 		// Provide port's implements
 		fx.Provide(publisher.NewEventPublisherAdapter),

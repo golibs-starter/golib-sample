@@ -1,0 +1,8 @@
+app:
+  name: Sample Worker
+
+  security:
+    http:
+      publicUrls:
+        - /actuator/health
+        - /actuator/info

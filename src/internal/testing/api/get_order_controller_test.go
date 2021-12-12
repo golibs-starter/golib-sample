@@ -8,7 +8,7 @@ import (
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
 	"gitlab.com/golibs-starter/golib-sample-core/exception"
 	"gitlab.com/golibs-starter/golib-sample-internal/testing/base"
-	golibtest "gitlab.com/golibs-starter/golib-test"
+    "gitlab.com/golibs-starter/golib-test"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"net/http"
@@ -20,7 +20,6 @@ type GetOrderControllerTest struct {
 	*base.TestSuite
 	authorization string
 	db            *gorm.DB
-	props         *properties.OrderRepositoryProperties
 }
 
 func TestGetOrderControllerTest(t *testing.T) {
