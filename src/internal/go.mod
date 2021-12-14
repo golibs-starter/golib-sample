@@ -15,7 +15,7 @@ require (
 	gitlab.id.vin/vincart/golib-migrate v0.0.4
 	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.id.vin/vincart/golib-security v0.8.7
+	gitlab.id.vin/vincart/golib-security v0.8.8
 	gitlab.id.vin/vincart/golib-test v0.2.5
 	go.uber.org/fx v1.13.1
 	gorm.io/gorm v1.22.3
