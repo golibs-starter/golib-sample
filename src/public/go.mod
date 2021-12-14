@@ -16,7 +16,7 @@ require (
 	gitlab.com/golibs-starter/golib-migrate v0.0.4-beta
 	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.com/golibs-starter/golib-security v0.8.7-beta
+	gitlab.com/golibs-starter/golib-security v0.8.8-beta
 	gitlab.com/golibs-starter/golib-test v0.2.5-beta
 	go.uber.org/fx v1.13.1
 	gorm.io/gorm v1.22.3
