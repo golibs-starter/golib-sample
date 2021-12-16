@@ -989,8 +989,8 @@ github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7o
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
 gitlab.com/nyarla/go-crypt v0.0.0-20160106005555-d9a5dc2b789b/go.mod h1:T3BPAOm2cqquPa0MKWeNkmOM5RQsRhkrwMWonFMN7fE=
 gitlab.id.vin/vincart/golib v0.9.8/go.mod h1:Ln2gUkDbOos6jSNEL3Fdf/3jxE3w3hnrpDTyGD0rCFM=
-gitlab.id.vin/vincart/golib v0.9.9 h1:C5Xoc3mZ6HRe4IVySnKuSwUmn6TZQP4W6ERHp3lINFY=
-gitlab.id.vin/vincart/golib v0.9.9/go.mod h1:Ln2gUkDbOos6jSNEL3Fdf/3jxE3w3hnrpDTyGD0rCFM=
+gitlab.id.vin/vincart/golib v0.9.10 h1:nZEamPde2DqVRNXXk2R3JPmD7rNowDW1hPLto6S0KIk=
+gitlab.id.vin/vincart/golib v0.9.10/go.mod h1:Ln2gUkDbOos6jSNEL3Fdf/3jxE3w3hnrpDTyGD0rCFM=
 gitlab.id.vin/vincart/golib-data v0.7.2 h1:iC1HtkiEqeR6sW8Dka3MOJEvuXwwtDH0qlXEQpARpDM=
 gitlab.id.vin/vincart/golib-data v0.7.2/go.mod h1:/piqTMaStHfQse8liT+SR0ETb0sQMqY18gprkj/jslk=
 gitlab.id.vin/vincart/golib-migrate v0.0.4 h1:aqGyZSxk6W5zj2pesHmtk4BGkcdIjUqFy3ISQewl+kc=
