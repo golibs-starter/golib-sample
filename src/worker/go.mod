@@ -6,12 +6,12 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/stretchr/testify v1.7.0
-	gitlab.com/golibs-starter/golib v0.9.9-beta
+	gitlab.com/golibs-starter/golib v0.9.10-beta
 	gitlab.com/golibs-starter/golib-gin v0.5.2-beta
 	gitlab.com/golibs-starter/golib-message-bus v0.1.4-beta
 	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.com/golibs-starter/golib-security v0.8.7-beta // indirect
+	gitlab.com/golibs-starter/golib-security v0.8.8-beta // indirect
 	gitlab.com/golibs-starter/golib-test v0.2.5-beta // indirect
 	go.uber.org/fx v1.13.1
 )
