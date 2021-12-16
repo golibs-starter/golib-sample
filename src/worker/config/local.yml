@@ -16,7 +16,7 @@ app:
     http:
       client:
         basicAuth:
-          - { urlMatch: "https://order.sample.api/.*", username: guest, password: secret }
+          - { urlMatch: "https://order.sample.api/.*", username: guest, password: "${ORDER_DELIVERY_SERVICE_PASSWORD}" }
 
   services:
     delivery:

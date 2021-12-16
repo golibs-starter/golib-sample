@@ -10,6 +10,7 @@ tidy:
 	cd src/migration && go mod tidy
 	cd src/internal && go mod tidy
 	cd src/public && go mod tidy
+	cd src/worker && go mod tidy
 
 swagger-internal:
 	cd src/internal && swag init --parseDependency --parseDepth=3
