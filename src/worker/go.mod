@@ -6,13 +6,13 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/stretchr/testify v1.7.0
-	gitlab.id.vin/vincart/golib v0.9.10
-	gitlab.id.vin/vincart/golib-gin v0.5.2
-	gitlab.id.vin/vincart/golib-message-bus v0.1.4
+	gitlab.id.vin/vincart/golib v0.9.11
+	gitlab.id.vin/vincart/golib-gin v0.5.3
+	gitlab.id.vin/vincart/golib-message-bus v0.1.5
 	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.id.vin/vincart/golib-security v0.8.8
-	gitlab.id.vin/vincart/golib-test v0.2.5
+	gitlab.id.vin/vincart/golib-security v0.8.9
+	gitlab.id.vin/vincart/golib-test v0.2.6
 	go.uber.org/fx v1.13.1
 )
 
@@ -26,9 +26,9 @@ require (
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/go-playground/locales v0.13.0 // indirect
-	github.com/go-playground/universal-translator v0.17.0 // indirect
-	github.com/go-playground/validator/v10 v10.4.1 // indirect
+	github.com/go-playground/locales v0.14.0 // indirect
+	github.com/go-playground/universal-translator v0.18.0 // indirect
+	github.com/go-playground/validator/v10 v10.9.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
-	github.com/leodido/go-urn v1.2.0 // indirect
+	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect

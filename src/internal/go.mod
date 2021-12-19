@@ -8,15 +8,15 @@ require (
 	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
 	github.com/swaggo/gin-swagger v1.3.3
 	github.com/swaggo/swag v1.7.4
-	gitlab.id.vin/vincart/golib v0.9.10
-	gitlab.id.vin/vincart/golib-data v0.7.2
-	gitlab.id.vin/vincart/golib-gin v0.5.2
-	gitlab.id.vin/vincart/golib-message-bus v0.1.4
-	gitlab.id.vin/vincart/golib-migrate v0.0.4
+	gitlab.id.vin/vincart/golib v0.9.11
+	gitlab.id.vin/vincart/golib-data v0.7.5
+	gitlab.id.vin/vincart/golib-gin v0.5.3
+	gitlab.id.vin/vincart/golib-message-bus v0.1.5
+	gitlab.id.vin/vincart/golib-migrate v0.0.5
 	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.id.vin/vincart/golib-security v0.8.8
-	gitlab.id.vin/vincart/golib-test v0.2.5
+	gitlab.id.vin/vincart/golib-security v0.8.9
+	gitlab.id.vin/vincart/golib-test v0.2.6
 	go.uber.org/fx v1.13.1
 	gorm.io/gorm v1.22.3
 )
@@ -40,9 +40,9 @@ require (
 	github.com/go-openapi/jsonreference v0.19.5 // indirect
 	github.com/go-openapi/spec v0.20.3 // indirect
 	github.com/go-openapi/swag v0.19.14 // indirect
-	github.com/go-playground/locales v0.13.0 // indirect
-	github.com/go-playground/universal-translator v0.17.0 // indirect
-	github.com/go-playground/validator/v10 v10.4.1 // indirect
+	github.com/go-playground/locales v0.14.0 // indirect
+	github.com/go-playground/universal-translator v0.18.0 // indirect
+	github.com/go-playground/validator/v10 v10.9.0 // indirect
 	github.com/go-redis/redis/v8 v8.11.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang-migrate/migrate/v4 v4.15.1 // indirect
@@ -71,7 +71,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
-	github.com/leodido/go-urn v1.2.0 // indirect
+	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.10.2 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
