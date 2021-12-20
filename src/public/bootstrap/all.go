@@ -5,7 +5,6 @@ import (
 	"gitlab.com/golibs-starter/golib"
 	"gitlab.com/golibs-starter/golib-data"
 	"gitlab.com/golibs-starter/golib-message-bus"
-	adapterProps "gitlab.com/golibs-starter/golib-sample-adapter/properties"
 	"gitlab.com/golibs-starter/golib-sample-adapter/publisher"
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql"
 	"gitlab.com/golibs-starter/golib-sample-adapter/service"
