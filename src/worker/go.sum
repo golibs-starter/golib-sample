@@ -342,8 +342,8 @@ github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1
 github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7osUAbdwCBY5Q=
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
 gitlab.id.vin/vincart/golib v0.9.11/go.mod h1:StS/VJoeH4dAmZ7uvLHUY4CNmVIqNXV4n+8Ng1yGY48=
-gitlab.id.vin/vincart/golib v0.9.12 h1:+KsZt4qFDxmirRtRV0UuBHdxgLXkMB0aNf5m8W8vHqQ=
-gitlab.id.vin/vincart/golib v0.9.12/go.mod h1:StS/VJoeH4dAmZ7uvLHUY4CNmVIqNXV4n+8Ng1yGY48=
+gitlab.id.vin/vincart/golib v0.9.13 h1:fyYh/xEn0oAGluCNfc7tEMRakADsYVZ+a6EcJuqD630=
+gitlab.id.vin/vincart/golib v0.9.13/go.mod h1:StS/VJoeH4dAmZ7uvLHUY4CNmVIqNXV4n+8Ng1yGY48=
 gitlab.id.vin/vincart/golib-gin v0.5.3 h1:4NzjO6XOyoJAte8+eRI9yRkuT+hFhsARhicsXMwq/Rs=
 gitlab.id.vin/vincart/golib-gin v0.5.3/go.mod h1:ZdioUfn7cRxDxknfK7y2/49WKr6qwWQsRndHuJvwQtA=
 gitlab.id.vin/vincart/golib-message-bus v0.1.5 h1:i4o27AjKzHe/mZikc+m1I2+baf2CRC+dvZXScwVDnVk=
