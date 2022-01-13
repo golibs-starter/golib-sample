@@ -6,13 +6,13 @@ require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/stretchr/testify v1.7.0
-	gitlab.id.vin/vincart/golib v0.9.13
+	gitlab.id.vin/vincart/golib v0.9.14
 	gitlab.id.vin/vincart/golib-gin v0.5.3
 	gitlab.id.vin/vincart/golib-message-bus v0.1.5
 	gitlab.id.vin/vincart/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-sample-core v0.0.0-00010101000000-000000000000
 	gitlab.id.vin/vincart/golib-security v0.8.9
-	gitlab.id.vin/vincart/golib-test v0.2.6
+	gitlab.id.vin/vincart/golib-test v0.2.7
 	go.uber.org/fx v1.13.1
 )
 
