@@ -1099,7 +1099,7 @@ github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7o
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
 gitlab.com/golibs-starter/golib v0.9.11-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
 gitlab.com/golibs-starter/golib v0.9.14-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
-gitlab.com/golibs-starter/golib v0.10.0-beta h1:LaIfHm49zJ6vz+JOh8ADPH0dtbMYsudF73LCdc8oeaQ=
+gitlab.com/golibs-starter/golib v0.10.0-beta h1:Js1pfvQ7P6pg/y8CHRjwisto0SpQye/30FieRy0nJfM=
 gitlab.com/golibs-starter/golib v0.10.0-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
 gitlab.com/golibs-starter/golib-data v0.7.5-beta h1:AQS/CvdWK7SQkH4zXMapc/cBnilYmCENZHvBuMyOBUM=
 gitlab.com/golibs-starter/golib-data v0.7.5-beta/go.mod h1:Z6Mtxjj3sepTMKwMuDXRPqVgBpdkJwrUPJVcUvhmYoM=
