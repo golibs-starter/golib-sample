@@ -1005,8 +1005,8 @@ github.com/zenazn/goji v0.9.0/go.mod h1:7S9M489iMyHBNxwZnk9/EHS098H4/F6TATF2mIxt
 github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7osUAbdwCBY5Q=
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
 gitlab.com/golibs-starter/golib v0.9.11-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
-gitlab.com/golibs-starter/golib v0.9.14-beta h1:8XAFXXZuXy7WUAnHypNHyH2E28Opfpr7kVh+gwLpX8A=
-gitlab.com/golibs-starter/golib v0.9.14-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
+gitlab.com/golibs-starter/golib v0.10.0-beta h1:LaIfHm49zJ6vz+JOh8ADPH0dtbMYsudF73LCdc8oeaQ=
+gitlab.com/golibs-starter/golib v0.10.0-beta/go.mod h1:0eyqugP1eBL70FkPNSXn4R8k6tdDE/jKcvtSoSlzS8M=
 gitlab.com/golibs-starter/golib-data v0.7.5-beta h1:AQS/CvdWK7SQkH4zXMapc/cBnilYmCENZHvBuMyOBUM=
 gitlab.com/golibs-starter/golib-data v0.7.5-beta/go.mod h1:Z6Mtxjj3sepTMKwMuDXRPqVgBpdkJwrUPJVcUvhmYoM=
 gitlab.com/golibs-starter/golib-migrate v0.0.5-beta h1:L/6hRNlj8gP9omZULcZbHkGQadrlWMNbMB05aRhwaC0=

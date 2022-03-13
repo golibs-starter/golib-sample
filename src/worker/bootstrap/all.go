@@ -22,6 +22,7 @@ func All() []fx.Option {
 		golib.EventOpt(),
 		golib.BuildInfoOpt(Version, CommitHash, BuildTime),
 		golib.ActuatorEndpointOpt(),
+		golib.HttpRequestLogOpt(),
 
 		// Provide datasource, message queue auto config
 		golibmsg.KafkaCommonOpt(),

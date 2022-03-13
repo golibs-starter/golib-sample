@@ -24,6 +24,7 @@ func All() []fx.Option {
 		golib.EventOpt(),
 		golib.BuildInfoOpt(Version, CommitHash, BuildTime),
 		golib.ActuatorEndpointOpt(),
+		golib.HttpRequestLogOpt(),
 
 		// Http security auto config and authentication filters
 		golibsec.HttpSecurityOpt(),
