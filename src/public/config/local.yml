@@ -21,12 +21,19 @@ app:
     clientId: golib-sample
     admin:
       topics:
+        - name: c1.http.request-completed
+          partitions: 1
+          replicaFactor: 1
+          retention: 72h
         - name: c1.order.order-created
           partitions: 1
           replicaFactor: 1
           retention: 72h
     producer:
       eventMappings:
+        RequestCompletedEvent:
+          topicName: c1.http.request-completed
+          transactional: false
         OrderCreatedEvent:
           topicName: c1.order.order-created
           transactional: false

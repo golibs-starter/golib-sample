@@ -5,6 +5,12 @@ app:
   kafka:
     bootstrapServers: localhost:9092
     clientId: golib-sample-test
+    admin:
+      topics:
+        - name: c1.order.order-created.test
+          partitions: 1
+          replicaFactor: 1
+          retention: 72h
     producer:
       eventMappings:
         OrderCreatedEvent:
@@ -14,11 +20,11 @@ app:
       handlerMappings:
         OrderCreatedEventDummyHandler:
           topic: c1.order.order-created.test
-          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.local
+          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.test
           enable: true
         SendOrderToDeliveryProviderHandler:
           topic: c1.order.order-created.test
-          groupId: c1.order.order-created.SendOrderToDeliveryProviderHandler.local
+          groupId: c1.order.order-created.SendOrderToDeliveryProviderHandler.test
           enable: true
 
   security:

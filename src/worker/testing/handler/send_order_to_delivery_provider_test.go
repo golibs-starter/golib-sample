@@ -30,6 +30,7 @@ func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
 	s := SendOrderToDeliveryProviderHandlerTest{}
 	s.TestSuite = base.NewTestSuite(
 		golibtest.WithTestingDir(".."),
+		golibtest.WithFxOption(golibmsg.KafkaAdminOpt()),
 		golibtest.WithFxOption(golibmsg.KafkaProducerOpt()),
 		golibtest.WithFxOption(golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler)),
 		golibtest.WithFxOption(fx.Provide(dummy.NewOrderEventDummyCollector)),
@@ -76,6 +77,9 @@ func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendT
 			CreatedAt:   time.Now().Unix(),
 		},
 	}
+
+	// Wait for consumer group ready
+	time.Sleep(200 * time.Millisecond)
 	pubsub.Publish(e)
 
 	golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)
