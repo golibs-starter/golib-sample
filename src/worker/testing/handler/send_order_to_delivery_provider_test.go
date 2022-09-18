@@ -83,7 +83,7 @@ func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendT
 	pubsub.Publish(e)
 
 	golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)
-	time.Sleep(200 * time.Millisecond)
+	time.Sleep(1 * time.Second)
 	assert.Len(s.T(), s.collector.CreatedEvents(), 1)
 	expectedEvent := s.collector.CreatedEvents()[0]
 	assert.Equal(s.T(), "OrderCreatedEvent", expectedEvent.Name())
