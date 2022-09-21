@@ -3,13 +3,13 @@ module gitlab.com/golibs-starter/golib-sample-adapter
 go 1.17
 
 require (
-	gitlab.com/golibs-starter/golib v0.10.0-beta
+	gitlab.com/golibs-starter/golib v0.12.0
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
 	gorm.io/gorm v1.22.3
 )
 
 require (
-	github.com/emirpasic/gods v1.12.0 // indirect
+	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
@@ -32,9 +32,9 @@ require (
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
-	go.uber.org/zap v1.18.1 // indirect
+	go.uber.org/zap v1.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
-	golang.org/x/sys v0.0.0-20210806184541-e5e7981a1069 // indirect
+	golang.org/x/sys v0.0.0-20210903071746-97244b99971b // indirect
 	golang.org/x/text v0.3.7 // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

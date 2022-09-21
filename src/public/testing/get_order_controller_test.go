@@ -1,4 +1,4 @@
-package api
+package testing
 
 import (
 	"fmt"
@@ -6,9 +6,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
 	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-sample-public/testing/base"
 	"gitlab.com/golibs-starter/golib-test"
-	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"net/http"
 	"testing"
@@ -16,20 +14,15 @@ import (
 )
 
 type GetOrderControllerTest struct {
-	*base.TestSuite
+	TestSuite
 	db *gorm.DB
 }
 
 func TestGetOrderControllerTest(t *testing.T) {
-	s := GetOrderControllerTest{}
-	s.TestSuite = base.NewTestSuite(
-		golibtest.WithTestingDir(".."),
-		golibtest.WithFxPopulate(&s.db),
-		golibtest.WithFxOption(fx.Invoke(func(db *gorm.DB) {
-			db.Session(&gorm.Session{AllowGlobalUpdate: true}).Delete(&model.Order{})
-		})),
-	)
-	suite.Run(t, &s)
+	s := new(GetOrderControllerTest)
+	s.Populate(&s.db)
+	s.Invoke(TruncateTablesInvoker("orders"))
+	suite.Run(t, s)
 }
 
 func (s GetOrderControllerTest) TestGetOrderById_WhenOrderIdIsValid_ShouldReturnSuccess() {
@@ -41,15 +34,11 @@ func (s GetOrderControllerTest) TestGetOrderById_WhenOrderIdIsValid_ShouldReturn
 	assert.NoError(s.T(), s.db.Create(&expectedOrder).Error)
 	assert.Greater(s.T(), expectedOrder.Id, 0)
 
-	resp := golibtest.NewDefaultHttpClient(s.T()).Do(
-		golibtest.NewRequestBuilder(s.T()).
-			WithBearerAuthorization(s.CreateJwtToken("10")).
-			Get(s.URL(fmt.Sprintf("/v1/orders/%d", expectedOrder.Id))),
-	)
-	defer resp.Body.Close()
-
-	golibtest.NewRestAssured(s.T(), resp).
-		Status(http.StatusOK).
+	golibtest.NewRestAssured(s.T()).
+		When().
+		Get(fmt.Sprintf("/v1/orders/%d", expectedOrder.Id)).
+		BearerToken(s.CreateJwtToken("10")).
+		Then().
 		Body("data.id", expectedOrder.Id).
 		Body("data.user_id", expectedOrder.UserId).
 		Body("data.total_amount", expectedOrder.TotalAmount).
@@ -67,28 +56,22 @@ func (s GetOrderControllerTest) TestGetOrderById_WhenGetOrderOfOtherUser_ShouldR
 	assert.NoError(s.T(), s.db.Create(&expectedOrder).Error)
 	assert.Greater(s.T(), expectedOrder.Id, 0)
 
-	resp := golibtest.NewDefaultHttpClient(s.T()).Do(
-		golibtest.NewRequestBuilder(s.T()).
-			WithBearerAuthorization(s.CreateJwtToken("10")).
-			Get(s.URL(fmt.Sprintf("/v1/orders/%d", expectedOrder.Id))),
-	)
-	defer resp.Body.Close()
-
-	golibtest.NewRestAssured(s.T(), resp).
+	golibtest.NewRestAssured(s.T()).
+		When().
+		Get(fmt.Sprintf("/v1/orders/%d", expectedOrder.Id)).
+		BearerToken(s.CreateJwtToken("10")).
+		Then().
 		Status(http.StatusNotFound).
 		Body("meta.code", exception.OrderNotFound.Code()).
 		Body("meta.message", exception.OrderNotFound.Error())
 }
 
 func (s GetOrderControllerTest) TestGetOrderById_WhenOrderIdIsInvalid_ShouldError() {
-	resp := golibtest.NewDefaultHttpClient(s.T()).Do(
-		golibtest.NewRequestBuilder(s.T()).
-			WithBearerAuthorization(s.CreateJwtToken("10")).
-			Get(s.URL("/v1/orders/xxx")),
-	)
-	defer resp.Body.Close()
-
-	golibtest.NewRestAssured(s.T(), resp).
+	golibtest.NewRestAssured(s.T()).
+		When().
+		Get("/v1/orders/xxx").
+		BearerToken(s.CreateJwtToken("10")).
+		Then().
 		Status(http.StatusBadRequest).
 		Body("meta.code", exception.OrderIdInvalid.Code()).
 		Body("meta.message", exception.OrderIdInvalid.Error())

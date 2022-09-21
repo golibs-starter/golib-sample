@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
-	"github.com/gin-gonic/gin"
 	"gitlab.com/golibs-starter/golib"
 	"gitlab.com/golibs-starter/golib-data"
+	"gitlab.com/golibs-starter/golib-gin"
 	"gitlab.com/golibs-starter/golib-message-bus"
 	"gitlab.com/golibs-starter/golib-sample-adapter/publisher"
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql"
@@ -65,8 +65,7 @@ func All() []fx.Option {
 
 		// Provide gin engine, register core handlers,
 		// actuator endpoints and application routers
-		fx.Provide(gin.New),
-		fx.Invoke(router.RegisterHandlers),
+		golibgin.GinHttpServerOpt(),
 		fx.Invoke(router.RegisterGinRouters),
 	}
 }

@@ -3,16 +3,16 @@ module gitlab.com/golibs-starter/golib-sample-migration
 go 1.17
 
 require (
-	gitlab.com/golibs-starter/golib v0.10.0-beta
+	gitlab.com/golibs-starter/golib v0.12.0
 	gitlab.com/golibs-starter/golib-data v0.7.5-beta
 	gitlab.com/golibs-starter/golib-migrate v0.0.5-beta
-	go.uber.org/fx v1.15.0
+	go.uber.org/fx v1.18.1
 )
 
 require (
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
-	github.com/emirpasic/gods v1.12.0 // indirect
+	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
@@ -48,9 +48,9 @@ require (
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
 	go.uber.org/atomic v1.7.0 // indirect
-	go.uber.org/dig v1.12.0 // indirect
+	go.uber.org/dig v1.15.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
-	go.uber.org/zap v1.18.1 // indirect
+	go.uber.org/zap v1.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/sys v0.0.0-20211013075003-97ac67df715c // indirect
 	golang.org/x/text v0.3.7 // indirect

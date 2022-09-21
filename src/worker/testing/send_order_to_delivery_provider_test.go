@@ -1,4 +1,4 @@
-package handler
+package testing
 
 import (
 	"context"
@@ -7,7 +7,6 @@ import (
 	"github.com/stretchr/testify/suite"
 	"gitlab.com/golibs-starter/golib-message-bus"
 	"gitlab.com/golibs-starter/golib-sample-core/event"
-	"gitlab.com/golibs-starter/golib-sample-worker/testing/base"
 	"gitlab.com/golibs-starter/golib-sample-worker/testing/dummy"
 	"gitlab.com/golibs-starter/golib-test"
 	"gitlab.com/golibs-starter/golib/pubsub"
@@ -21,20 +20,19 @@ import (
 )
 
 type SendOrderToDeliveryProviderHandlerTest struct {
-	*base.TestSuite
+	TestSuite
 	httpClient *http.Client
 	collector  *dummy.OrderEventDummyCollector
 }
 
 func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
 	s := SendOrderToDeliveryProviderHandlerTest{}
-	s.TestSuite = base.NewTestSuite(
-		golibtest.WithTestingDir(".."),
-		golibtest.WithFxOption(golibmsg.KafkaAdminOpt()),
-		golibtest.WithFxOption(golibmsg.KafkaProducerOpt()),
-		golibtest.WithFxOption(golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler)),
-		golibtest.WithFxOption(fx.Provide(dummy.NewOrderEventDummyCollector)),
-		golibtest.WithFxPopulate(&s.httpClient, &s.collector),
+	s.Option(
+		golibmsg.KafkaAdminOpt(),
+		golibmsg.KafkaProducerOpt(),
+		golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler),
+		fx.Provide(dummy.NewOrderEventDummyCollector),
+		fx.Populate(&s.httpClient, &s.collector),
 	)
 	suite.Run(t, &s)
 }
@@ -78,8 +76,6 @@ func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendT
 		},
 	}
 
-	// Wait for consumer group ready
-	time.Sleep(200 * time.Millisecond)
 	pubsub.Publish(e)
 
 	golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)

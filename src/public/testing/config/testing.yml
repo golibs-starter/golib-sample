@@ -1,5 +1,5 @@
 app:
-  port: -1 # -1 means random port
+  port: 0 # 0 means random port
   logging.development: true
 
   datasource:
@@ -10,7 +10,7 @@ app:
     username: root
     password: secret
     params: parseTime=true
-    migrationSource: file://../../../migration/migrations
+    migrationSource: file://../../migration/migrations
 
   kafka:
     bootstrapServers: localhost:9092
@@ -22,18 +22,16 @@ app:
           replicaFactor: 1
           retention: 72h
     producer:
-      flushMessages: 1
-      flushFrequency: 1s
       eventMappings:
         OrderCreatedEvent:
           topicName: c1.order.order-created.test
           transactional: false
     consumer:
-      initialOffset: -2
+      commitMode: AUTO_COMMIT_IMMEDIATELY
       handlerMappings:
         OrderCreatedEventDummyHandler:
           topic: c1.order.order-created.test
-          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.local
+          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.test
           enable: true
 
   security:

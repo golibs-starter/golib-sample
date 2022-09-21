@@ -1,33 +1,38 @@
-package base
+package testing
 
 import (
 	"crypto/rsa"
 	"github.com/dgrijalva/jwt-go"
 	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-gin"
 	"gitlab.com/golibs-starter/golib-migrate"
 	"gitlab.com/golibs-starter/golib-sample-public/bootstrap"
 	"gitlab.com/golibs-starter/golib-sample-public/testing/properties"
 	"gitlab.com/golibs-starter/golib-test"
+	"gitlab.com/golibs-starter/golib/log"
 	"go.uber.org/fx"
+	"gorm.io/gorm"
 	"time"
 )
 
 type TestSuite struct {
-	*golibtest.FxTestSuite
+	golibtest.FxTestSuite
 	jwtSignKey *rsa.PrivateKey
+	db         *gorm.DB
 }
 
-func NewTestSuite(tsOptions ...golibtest.TsOption) *TestSuite {
-	ts := &TestSuite{}
-	tsOptions = append(tsOptions,
-		golibtest.WithFxOption(golib.ProvideProps(properties.NewJwtTestProperties)),
-		golibtest.WithFxOption(fx.Invoke(ts.LoadJwtPrivateKey)),
-		golibtest.WithFxOption(golibmigrate.MigrationOpt()),
-		golibtest.WithInvokeStart(golibgin.StartTestOpt),
+func (s *TestSuite) SetupSuite() {
+	log.Info("Test App is initializing")
+	s.Profile("testing")
+	s.ProfilePath("../config/", "./config/")
+	s.Options(bootstrap.All())
+	s.Option(
+		golibmigrate.MigrationOpt(),
+		golib.ProvideProps(properties.NewJwtTestProperties),
+		fx.Invoke(s.LoadJwtPrivateKey),
 	)
-	ts.FxTestSuite = golibtest.NewFxTestSuite(bootstrap.All(), tsOptions...)
-	return ts
+	s.Populate(&s.db)
+	s.SetupApp()
+	log.Info("Test App is initialized")
 }
 
 func (s TestSuite) CreateJwtToken(userId string) string {

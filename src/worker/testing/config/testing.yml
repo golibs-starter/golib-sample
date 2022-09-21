@@ -17,6 +17,7 @@ app:
           topicName: c1.order.order-created.test
           transactional: false
     consumer:
+      commitMode: AUTO_COMMIT_IMMEDIATELY
       handlerMappings:
         OrderCreatedEventDummyHandler:
           topic: c1.order.order-created.test

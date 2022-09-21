@@ -23,7 +23,7 @@ func (c *OrderCreatedEventDummyHandler) HandlerFunc(msg *core.ConsumerMessage) {
 		return
 	}
 	c.collector.createdEvents = append(c.collector.createdEvents, e)
-	log.Infoe(e, "[OrderCreatedEventDummyHandler] Success to unmarshal event message")
+	log.Infoe(e, "[OrderCreatedEventDummyHandler] Success to unmarshal event message: [%+v]", e.Payload())
 }
 
 func (c OrderCreatedEventDummyHandler) Close() {
