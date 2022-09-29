@@ -1,5 +1,5 @@
 app:
-  port: -1 # -1 means random port
+  port: 0 # 0 means random port
   logging.development: true
 
   datasource:

@@ -2,7 +2,7 @@ module gitlab.com/golibs-starter/golib-sample-core
 
 go 1.17
 
-require gitlab.com/golibs-starter/golib v0.12.0
+require gitlab.com/golibs-starter/golib v0.12.2
 
 require (
 	github.com/emirpasic/gods v1.18.1 // indirect

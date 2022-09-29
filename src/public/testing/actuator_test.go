@@ -16,7 +16,7 @@ func TestActuatorTest(t *testing.T) {
 }
 
 func (s *ActuatorTest) TestActuatorInfo_ShouldReturnSuccess() {
-	golibtest.NewRestAssured(s.T()).
+	golibtest.NewRestAssuredSuite(s).
 		When().
 		Get("/actuator/info").
 		Then().
@@ -26,7 +26,7 @@ func (s *ActuatorTest) TestActuatorInfo_ShouldReturnSuccess() {
 }
 
 func (s *ActuatorTest) TestActuatorHealth_ShouldReturnSuccess() {
-	golibtest.NewRestAssured(s.T()).
+	golibtest.NewRestAssuredSuite(s).
 		When().
 		Get("/actuator/health").
 		Then().

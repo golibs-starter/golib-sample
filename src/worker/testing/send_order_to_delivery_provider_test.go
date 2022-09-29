@@ -2,18 +2,16 @@ package testing
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/jarcoal/httpmock"
-	assert "github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"gitlab.com/golibs-starter/golib-message-bus"
+	"gitlab.com/golibs-starter/golib-message-bus/testutil"
 	"gitlab.com/golibs-starter/golib-sample-core/event"
-	"gitlab.com/golibs-starter/golib-sample-worker/testing/dummy"
 	"gitlab.com/golibs-starter/golib-test"
 	"gitlab.com/golibs-starter/golib/pubsub"
 	"gitlab.com/golibs-starter/golib/web/constant"
 	webContext "gitlab.com/golibs-starter/golib/web/context"
 	webEvent "gitlab.com/golibs-starter/golib/web/event"
-	"go.uber.org/fx"
 	"net/http"
 	"testing"
 	"time"
@@ -21,26 +19,24 @@ import (
 
 type SendOrderToDeliveryProviderHandlerTest struct {
 	TestSuite
-	httpClient *http.Client
-	collector  *dummy.OrderEventDummyCollector
+	messageCollector *golibmsgTestUtil.MessageCollector
 }
 
 func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
 	s := SendOrderToDeliveryProviderHandlerTest{}
-	s.Option(
-		golibmsg.KafkaAdminOpt(),
-		golibmsg.KafkaProducerOpt(),
-		golibmsg.ProvideConsumer(dummy.NewOrderCreatedEventDummyHandler),
-		fx.Provide(dummy.NewOrderEventDummyCollector),
-		fx.Populate(&s.httpClient, &s.collector),
-	)
+	s.Populate(&s.messageCollector)
+	s.Decorate(func(httpClient *http.Client) *http.Client {
+		httpmock.ActivateNonDefault(httpClient)
+		return httpClient
+	})
 	suite.Run(t, &s)
 }
 
-func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
-	httpmock.ActivateNonDefault(s.httpClient)
-	defer httpmock.DeactivateAndReset()
+func (s *SendOrderToDeliveryProviderHandlerTest) TearDownSuite() {
+	httpmock.DeactivateAndReset()
+}
 
+func (s *SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
 	httpmock.RegisterResponder("POST", "https://order.sample.api/v1/orders",
 		func(req *http.Request) (*http.Response, error) {
 			return httpmock.NewStringResponse(http.StatusCreated, `{
@@ -75,15 +71,16 @@ func (s SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendT
 			CreatedAt:   time.Now().Unix(),
 		},
 	}
-
 	pubsub.Publish(e)
 
-	golibtest.WaitUntil(func() bool { return len(s.collector.CreatedEvents()) >= 1 }, 20*time.Second)
+	topic := "c1.order.order-created.test"
+	golibtest.WaitUntilT(s.T(), func() bool { return s.messageCollector.Count(topic) >= 1 }, 20*time.Second)
 	time.Sleep(1 * time.Second)
-	assert.Len(s.T(), s.collector.CreatedEvents(), 1)
-	expectedEvent := s.collector.CreatedEvents()[0]
-	assert.Equal(s.T(), "OrderCreatedEvent", expectedEvent.Name())
-	assert.IsType(s.T(), &event.OrderMessage{}, expectedEvent.Payload())
+	s.Len(s.messageCollector.GetMessages(topic), 1)
+	var actualEvent event.OrderCreatedEvent
+	s.NoError(json.Unmarshal([]byte(s.messageCollector.GetMessages(topic)[0]), &actualEvent))
+	s.Equal(e.Name(), actualEvent.Name())
+	s.IsType(&event.OrderMessage{}, actualEvent.Payload())
 
-	assert.Equal(s.T(), 1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
+	s.Equal(1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
 }

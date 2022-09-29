@@ -6,20 +6,19 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/jarcoal/httpmock v1.0.8
 	github.com/stretchr/testify v1.8.0
-	gitlab.com/golibs-starter/golib v0.12.0
-	gitlab.com/golibs-starter/golib-gin v0.5.3-beta
-	gitlab.com/golibs-starter/golib-message-bus v0.1.5-beta
+	gitlab.com/golibs-starter/golib v0.12.2
+	gitlab.com/golibs-starter/golib-gin v0.6.0
+	gitlab.com/golibs-starter/golib-message-bus v0.3.1
 	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.com/golibs-starter/golib-security v0.8.9-beta
-	gitlab.com/golibs-starter/golib-test v0.2.7-beta
-	go.uber.org/fx v1.18.1
+	gitlab.com/golibs-starter/golib-security v0.9.0
+	gitlab.com/golibs-starter/golib-test v0.4.0
+	go.uber.org/fx v1.18.2
 )
 
 require (
 	github.com/Shopify/sarama v1.36.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/eapache/go-resiliency v1.3.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
@@ -29,11 +28,10 @@ require (
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
-	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/goccy/go-json v0.9.7 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
-	github.com/golang-migrate/migrate/v4 v4.15.1 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -44,12 +42,9 @@ require (
 	github.com/jcmturner/gofork v1.7.6 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.3 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
-	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/lib/pq v1.10.2 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
@@ -72,7 +67,6 @@ require (
 	github.com/tidwall/pretty v1.1.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
-	gitlab.com/golibs-starter/golib-migrate v0.0.5-beta // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/dig v1.15.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
@@ -85,7 +79,6 @@ require (
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/gorm v1.22.3 // indirect
 )
 
 replace (

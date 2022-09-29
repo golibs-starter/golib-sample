@@ -19,7 +19,7 @@ var (
 func init() {
 	log.Info("Test App is initializing")
 	_ = os.Setenv("TZ", "UTC")
-	_, err := golibtest.SetupTestApp(append(
+	_, err := golibtest.SetupFxApp(nil, append(
 		bootstrap.All(),
 		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
 		golib.ProvidePropsOption(golib.WithActiveProfiles([]string{"testing"})),
