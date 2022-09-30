@@ -1160,8 +1160,9 @@ github.com/yvasiyarov/newrelic_platform_go v0.0.0-20140908184405-b21fdbd4370f/go
 github.com/zenazn/goji v0.9.0/go.mod h1:7S9M489iMyHBNxwZnk9/EHS098H4/F6TATF2mIxtB1Q=
 github.com/zenthangplus/defaults v1.6.2-beta h1:2QDyud3qVvnfi/g0U3ub3EB0PI9H+D7osUAbdwCBY5Q=
 github.com/zenthangplus/defaults v1.6.2-beta/go.mod h1:WUOsmf5WcbZo/HrGwmDrpXcM9AF5ugQ4TUkijs8MQZs=
-gitlab.com/golibs-starter/golib v0.12.2 h1:QSNCd2aoMyoTk1RdmuhT6kpDKamhEnmCUNsvGvD9Coo=
 gitlab.com/golibs-starter/golib v0.12.2/go.mod h1:2TvSqo5fT+SbujIwTGGHmp+exHhcz5EY5lAUMHS0rac=
+gitlab.com/golibs-starter/golib v0.12.3 h1:ftBqUhHTV4Q6aN4zMFpqaRfhv1WJTw68fRy+h0gYXDI=
+gitlab.com/golibs-starter/golib v0.12.3/go.mod h1:2TvSqo5fT+SbujIwTGGHmp+exHhcz5EY5lAUMHS0rac=
 gitlab.com/golibs-starter/golib-data v0.8.0 h1:tPHjQK4ZX3879jgP41lRUohRa4W8x/EEWXZz6yvbMGs=
 gitlab.com/golibs-starter/golib-data v0.8.0/go.mod h1:nakRdywb0eGqUTmxGHTLyBrKBwwmFRBAE6xMmAHSBs8=
 gitlab.com/golibs-starter/golib-migrate v0.2.0 h1:m2HDlJB5PshcUh6bn7ADY145rRtIKTwJED5XcamoDsw=

@@ -3,7 +3,7 @@ package bootstrap
 import (
 	"gitlab.com/golibs-starter/golib"
 	"gitlab.com/golibs-starter/golib-data"
-	golibgin "gitlab.com/golibs-starter/golib-gin"
+	"gitlab.com/golibs-starter/golib-gin"
 	"gitlab.com/golibs-starter/golib-message-bus"
 	"gitlab.com/golibs-starter/golib-sample-adapter/publisher"
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql"
@@ -16,8 +16,8 @@ import (
 	"go.uber.org/fx"
 )
 
-func All() []fx.Option {
-	return []fx.Option{
+func All() fx.Option {
+	return fx.Options(
 		golib.AppOpt(),
 		golib.PropertiesOpt(),
 		golib.LoggingOpt(),
@@ -61,5 +61,10 @@ func All() []fx.Option {
 		// actuator endpoints and application routers
 		golibgin.GinHttpServerOpt(),
 		fx.Invoke(router.RegisterGinRouters),
-	}
+
+		// Graceful shutdown.
+		// OnStop hooks will run in reverse order.
+		golibgin.OnStopHttpServerOpt(),
+		golibmsg.OnStopProducerOpt(),
+	)
 }

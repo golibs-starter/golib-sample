@@ -16,8 +16,8 @@ import (
 	"go.uber.org/fx"
 )
 
-func All() []fx.Option {
-	return []fx.Option{
+func All() fx.Option {
+	return fx.Options(
 		golib.AppOpt(),
 		golib.PropertiesOpt(),
 		golib.LoggingOpt(),
@@ -67,5 +67,10 @@ func All() []fx.Option {
 		// actuator endpoints and application routers
 		golibgin.GinHttpServerOpt(),
 		fx.Invoke(router.RegisterGinRouters),
-	}
+
+		// Graceful shutdown.
+		// OnStop hooks will run in reverse order.
+		golibgin.OnStopHttpServerOpt(),
+		golibmsg.OnStopProducerOpt(),
+	)
 }

@@ -4,8 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/jarcoal/httpmock"
-	"github.com/stretchr/testify/suite"
-	"gitlab.com/golibs-starter/golib-message-bus/testutil"
+	assert "github.com/stretchr/testify/require"
 	"gitlab.com/golibs-starter/golib-sample-core/event"
 	"gitlab.com/golibs-starter/golib-test"
 	"gitlab.com/golibs-starter/golib/pubsub"
@@ -17,26 +16,7 @@ import (
 	"time"
 )
 
-type SendOrderToDeliveryProviderHandlerTest struct {
-	TestSuite
-	messageCollector *golibmsgTestUtil.MessageCollector
-}
-
-func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
-	s := new(SendOrderToDeliveryProviderHandlerTest)
-	s.Populate(&s.messageCollector)
-	s.Decorate(func(httpClient *http.Client) *http.Client {
-		httpmock.ActivateNonDefault(httpClient)
-		return httpClient
-	})
-	suite.Run(t, s)
-}
-
-func (s *SendOrderToDeliveryProviderHandlerTest) TearDownSuite() {
-	httpmock.DeactivateAndReset()
-}
-
-func (s *SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
+func TestSendOrderToDeliveryProvider_WhenOrderCreated_ShouldSendToDeliveryService(t *testing.T) {
 	httpmock.RegisterResponder("POST", "https://order.sample.api/v1/orders",
 		func(req *http.Request) (*http.Response, error) {
 			return httpmock.NewStringResponse(http.StatusCreated, `{
@@ -74,13 +54,12 @@ func (s *SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSend
 	pubsub.Publish(e)
 
 	topic := "c1.order.order-created.test"
-	golibtest.WaitUntilT(s.T(), func() bool { return s.messageCollector.Count(topic) >= 1 }, 20*time.Second)
+	golibtest.WaitUntilT(t, func() bool { return messageCollector.Count(topic) >= 1 }, 20*time.Second)
 	time.Sleep(1 * time.Second)
-	s.Len(s.messageCollector.GetMessages(topic), 1)
+	assert.Len(t, messageCollector.GetMessages(topic), 1)
 	var actualEvent event.OrderCreatedEvent
-	s.NoError(json.Unmarshal([]byte(s.messageCollector.GetMessages(topic)[0]), &actualEvent))
-	s.Equal(e.Name(), actualEvent.Name())
-	s.IsType(&event.OrderMessage{}, actualEvent.Payload())
-
-	s.Equal(1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
+	assert.NoError(t, json.Unmarshal([]byte(messageCollector.GetMessages(topic)[0]), &actualEvent))
+	assert.Equal(t, e.Name(), actualEvent.Name())
+	assert.IsType(t, &event.OrderMessage{}, actualEvent.Payload())
+	assert.Equal(t, 1, httpmock.GetCallCountInfo()["POST https://order.sample.api/v1/orders"])
 }
