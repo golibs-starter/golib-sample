@@ -23,9 +23,9 @@ type SendOrderToDeliveryProviderHandlerTest struct {
 }
 
 func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
-	s := SendOrderToDeliveryProviderHandlerTest{}
+	s := new(SendOrderToDeliveryProviderHandlerTest)
 	s.Populate(&s.messageCollector)
-	suite.Run(t, &s)
+	suite.Run(t, s)
 }
 
 func (s *SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
