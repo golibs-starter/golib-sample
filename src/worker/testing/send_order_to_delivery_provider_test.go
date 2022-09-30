@@ -25,7 +25,15 @@ type SendOrderToDeliveryProviderHandlerTest struct {
 func TestSendOrderToDeliveryProviderHandlerTest(t *testing.T) {
 	s := new(SendOrderToDeliveryProviderHandlerTest)
 	s.Populate(&s.messageCollector)
+	s.Decorate(func(httpClient *http.Client) *http.Client {
+		httpmock.ActivateNonDefault(httpClient)
+		return httpClient
+	})
 	suite.Run(t, s)
+}
+
+func (s *SendOrderToDeliveryProviderHandlerTest) TearDownSuite() {
+	httpmock.DeactivateAndReset()
 }
 
 func (s *SendOrderToDeliveryProviderHandlerTest) TestWhenOrderCreated_ShouldSendToDeliveryService() {
