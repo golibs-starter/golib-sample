@@ -1,5 +1,5 @@
 app:
-  port: -1 # -1 means random port
+  port: 0 # 0 means random port
   logging.development: true
 
   kafka:
@@ -7,20 +7,30 @@ app:
     clientId: golib-sample-test
     admin:
       topics:
+        - name: c1.http.request-completed.test
+          partitions: 1
+          replicaFactor: 1
+          retention: 72h
         - name: c1.order.order-created.test
           partitions: 1
           replicaFactor: 1
           retention: 72h
     producer:
       eventMappings:
+        RequestCompletedEvent:
+          topicName: c1.http.request-completed.test
+          transactional: false
         OrderCreatedEvent:
           topicName: c1.order.order-created.test
           transactional: false
     consumer:
+      commitMode: AUTO_COMMIT_IMMEDIATELY
       handlerMappings:
-        OrderCreatedEventDummyHandler:
-          topic: c1.order.order-created.test
-          groupId: c1.order.order-created.OrderCreatedEventDummyHandler.test
+        MessageCollectorHandler:
+          topics:
+            - c1.http.request-completed.test
+            - c1.order.order-created.test
+          groupId: c1.MessageCollectorHandler.test
           enable: true
         SendOrderToDeliveryProviderHandler:
           topic: c1.order.order-created.test

@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"github.com/gin-gonic/gin"
 	"gitlab.com/golibs-starter/golib"
+	golibgin "gitlab.com/golibs-starter/golib-gin"
 	"gitlab.com/golibs-starter/golib-message-bus"
 	"gitlab.com/golibs-starter/golib-sample-adapter/http/client"
 	adapterProps "gitlab.com/golibs-starter/golib-sample-adapter/properties"
@@ -27,6 +27,7 @@ func All() []fx.Option {
 		// Provide datasource, message queue auto config
 		golibmsg.KafkaCommonOpt(),
 		golibmsg.KafkaConsumerOpt(),
+		golibmsg.KafkaGracefulShutdownOpt(),
 
 		// Provide http client auto config with contextual http client by default,
 		// Besides, provide an additional wrapper to easy to control security.
@@ -50,8 +51,7 @@ func All() []fx.Option {
 
 		// Provide gin engine, register core handlers,
 		// actuator endpoints and application routers
-		fx.Provide(gin.New),
-		fx.Invoke(router.RegisterHandlers),
+		golibgin.GinHttpServerOpt(),
 		fx.Invoke(router.RegisterGinRouters),
 	}
 }

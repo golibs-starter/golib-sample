@@ -1,5 +1,5 @@
 app:
-  port: -1 # -1 means random port
+  port: 0 # 0 means random port
   logging.development: true
 
   datasource:
@@ -10,7 +10,7 @@ app:
     username: root
     password: secret
     params: parseTime=true
-    migrationSource: file://../../../migration/migrations
+    migrationSource: file://../../migration/migrations
 
   kafka:
     bootstrapServers: localhost:9092
