@@ -14,8 +14,8 @@ import (
 	"go.uber.org/fx"
 )
 
-func All() []fx.Option {
-	return []fx.Option{
+func All() fx.Option {
+	return fx.Options(
 		golib.AppOpt(),
 		golib.PropertiesOpt(),
 		golib.LoggingOpt(),
@@ -27,7 +27,6 @@ func All() []fx.Option {
 		// Provide datasource, message queue auto config
 		golibmsg.KafkaCommonOpt(),
 		golibmsg.KafkaConsumerOpt(),
-		golibmsg.KafkaGracefulShutdownOpt(),
 
 		// Provide http client auto config with contextual http client by default,
 		// Besides, provide an additional wrapper to easy to control security.
@@ -53,5 +52,11 @@ func All() []fx.Option {
 		// actuator endpoints and application routers
 		golibgin.GinHttpServerOpt(),
 		fx.Invoke(router.RegisterGinRouters),
-	}
+
+		// Graceful shutdown.
+		// OnStop hooks will run in reverse order.
+		golibgin.OnStopHttpServerOpt(),
+		golibmsg.OnStopProducerOpt(),
+		golibmsg.OnStopConsumerOpt(),
+	)
 }

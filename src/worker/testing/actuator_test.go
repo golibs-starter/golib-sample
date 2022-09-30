@@ -1,22 +1,13 @@
 package testing
 
 import (
-	"github.com/stretchr/testify/suite"
 	"gitlab.com/golibs-starter/golib-test"
 	"net/http"
 	"testing"
 )
 
-type ActuatorTest struct {
-	TestSuite
-}
-
-func TestActuatorTest(t *testing.T) {
-	suite.Run(t, new(ActuatorTest))
-}
-
-func (s *ActuatorTest) TestActuatorInfo_ShouldReturnSuccess() {
-	golibtest.NewRestAssured(s.T()).
+func TestActuatorInfo_ShouldSuccess(t *testing.T) {
+	golibtest.NewRestAssured(t).
 		When().
 		Get("/actuator/info").
 		Then().
@@ -25,8 +16,8 @@ func (s *ActuatorTest) TestActuatorInfo_ShouldReturnSuccess() {
 		Body("data.service_name", "Sample Worker")
 }
 
-func (s *ActuatorTest) TestActuatorHealth_ShouldReturnSuccess() {
-	golibtest.NewRestAssured(s.T()).
+func TestActuatorHealth_ShouldSuccess(t *testing.T) {
+	golibtest.NewRestAssured(t).
 		When().
 		Get("/actuator/health").
 		Then().

@@ -8,15 +8,15 @@ require (
 	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
 	github.com/swaggo/gin-swagger v1.3.3
 	github.com/swaggo/swag v1.7.4
-	gitlab.com/golibs-starter/golib v0.12.2
+	gitlab.com/golibs-starter/golib v0.12.3
 	gitlab.com/golibs-starter/golib-data v0.8.0
-	gitlab.com/golibs-starter/golib-gin v0.6.0
-	gitlab.com/golibs-starter/golib-message-bus v0.3.1
+	gitlab.com/golibs-starter/golib-gin v0.6.1
+	gitlab.com/golibs-starter/golib-message-bus v0.3.2
 	gitlab.com/golibs-starter/golib-migrate v0.2.0
 	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
 	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
 	gitlab.com/golibs-starter/golib-security v0.9.0
-	gitlab.com/golibs-starter/golib-test v0.4.0
+	gitlab.com/golibs-starter/golib-test v0.4.1
 	go.uber.org/fx v1.18.2
 	gorm.io/gorm v1.23.9
 )

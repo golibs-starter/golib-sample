@@ -1,7 +1,6 @@
 package testing
 
 import (
-	"fmt"
 	"gitlab.com/golibs-starter/golib"
 	"gitlab.com/golibs-starter/golib-migrate"
 	"gitlab.com/golibs-starter/golib-sample-internal/bootstrap"
@@ -19,15 +18,12 @@ var (
 func init() {
 	log.Info("Test App is initializing")
 	_ = os.Setenv("TZ", "UTC")
-	_, err := golibtest.SetupFxApp(nil, append(
-		bootstrap.All(),
+	_ = golibtest.RequireFxApp(
 		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
 		golib.ProvidePropsOption(golib.WithActiveProfiles([]string{"testing"})),
+		bootstrap.All(),
 		golibmigrate.MigrationOpt(),
 		fx.Populate(&db),
-	))
-	if err != nil {
-		panic(fmt.Errorf("error when setup test app: [%v]", err))
-	}
+	)
 	log.Info("Test App is initialized")
 }
