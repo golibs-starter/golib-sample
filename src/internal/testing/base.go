@@ -18,12 +18,12 @@ var (
 func init() {
 	log.Info("Test App is initializing")
 	_ = os.Setenv("TZ", "UTC")
-	_ = golibtest.RequireFxApp(
-		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
+	golibtest.RequireFxApp(
 		golib.ProvidePropsOption(golib.WithActiveProfiles([]string{"testing"})),
-		bootstrap.All(),
+		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
 		golibmigrate.MigrationOpt(),
 		fx.Populate(&db),
+		bootstrap.All(),
 	)
 	log.Info("Test App is initialized")
 }
