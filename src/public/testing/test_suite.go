@@ -22,11 +22,11 @@ func (s *TestSuite) SetupSuite() {
 	gin.DefaultWriter = log.NewTestingWriter(s.T())
 	s.Profile("testing")
 	s.ProfilePath("../config/", "./config/")
-	s.Option(bootstrap.All())
 	s.Option(golibmigrate.MigrationOpt())
 	s.Option(golibsecTestUtil.JwtTestUtilOpt())
 	s.Option(golibdataTestUtil.DatabaseTestUtilOpt())
 	s.Populate(&s.jwtTestUtil)
+	s.Option(bootstrap.All())
 	s.StartApp()
 	log.Info("Test App is initialized")
 }

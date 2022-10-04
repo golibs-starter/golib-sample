@@ -24,16 +24,16 @@ func init() {
 		golib.ProvidePropsOption(golib.WithActiveProfiles([]string{"testing"})),
 		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
 		golibmsg.KafkaAdminOpt(),
-		golibmsg.KafkaProducerOpt(),
 		golibmsgTestUtil.ResetKafkaConsumerGroupOpt(),
+		golibmsg.KafkaProducerOpt(),
 		golibmsgTestUtil.MessageCollectorOpt(),
-		bootstrap.All(),
-		golibmsg.KafkaConsumerReadyWaitOpt(),
+		fx.Populate(&messageCollector),
 		fx.Decorate(func(httpClient *http.Client) *http.Client {
 			httpmock.ActivateNonDefault(httpClient)
 			return httpClient
 		}),
-		fx.Populate(&messageCollector),
+		bootstrap.All(),
+		golibmsg.KafkaConsumerReadyWaitOpt(),
 	)
 	log.Info("Test App is initialized")
 }

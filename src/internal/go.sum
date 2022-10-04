@@ -1274,8 +1274,6 @@ gitlab.com/golibs-starter/golib-migrate v0.2.0 h1:m2HDlJB5PshcUh6bn7ADY145rRtIKT
 gitlab.com/golibs-starter/golib-migrate v0.2.0/go.mod h1:bDmDGRSHiL3HExzDaW3Ah5p5poiFpM2XNYvKnji7cbA=
 gitlab.com/golibs-starter/golib-security v0.9.0 h1:Ip/6xhClFw3j1foBLX6OGsUAP+0CRab+OGhH8ETTQMo=
 gitlab.com/golibs-starter/golib-security v0.9.0/go.mod h1:PVG/Ulp1hPPZixodRqkWMoCq9fjXBOE4P8KezVHnq6A=
-gitlab.com/golibs-starter/golib-test v0.4.1 h1:0BMIbODEUNdnxSe3Ju25RuDMeQK9roW7vjvcd4ZV+I0=
-gitlab.com/golibs-starter/golib-test v0.4.1/go.mod h1:LWAY6lxeB6mNOA3gsf+aBdTswM5Aqxp8ntUPcZCrk7s=
 gitlab.com/nyarla/go-crypt v0.0.0-20160106005555-d9a5dc2b789b/go.mod h1:T3BPAOm2cqquPa0MKWeNkmOM5RQsRhkrwMWonFMN7fE=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
