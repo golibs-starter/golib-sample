@@ -116,5 +116,4 @@ require (
 replace (
 	gitlab.com/golibs-starter/golib-sample-adapter => ./../adapter
 	gitlab.com/golibs-starter/golib-sample-core => ./../core
-	gitlab.com/golibs-starter/golib-test => ./../../../golib-test
 )
