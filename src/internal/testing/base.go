@@ -22,6 +22,7 @@ func init() {
 		golib.ProvidePropsOption(golib.WithActiveProfiles([]string{"testing"})),
 		golib.ProvidePropsOption(golib.WithPaths([]string{"../config/", "./config/"})),
 		golibmigrate.MigrationOpt(),
+		golibtest.EnableWebTestUtil(),
 		fx.Populate(&db),
 		bootstrap.All(),
 	)

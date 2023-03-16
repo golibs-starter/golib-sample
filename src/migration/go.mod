@@ -3,8 +3,8 @@ module gitlab.com/golibs-starter/golib-sample-migration
 go 1.17
 
 require (
-	gitlab.com/golibs-starter/golib v0.12.3
-	gitlab.com/golibs-starter/golib-data v0.8.0
+	gitlab.com/golibs-starter/golib v0.12.4
+	gitlab.com/golibs-starter/golib-data v0.11.0
 	gitlab.com/golibs-starter/golib-migrate v0.2.0
 	go.uber.org/fx v1.18.2
 )
@@ -37,6 +37,7 @@ require (
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.10.2 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
+	github.com/mattn/go-sqlite3 v1.14.15 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/pelletier/go-toml v1.9.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
@@ -58,5 +59,6 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/mysql v1.3.6 // indirect
 	gorm.io/driver/postgres v1.3.10 // indirect
-	gorm.io/gorm v1.23.9 // indirect
+	gorm.io/driver/sqlite v1.4.4 // indirect
+	gorm.io/gorm v1.24.0 // indirect
 )

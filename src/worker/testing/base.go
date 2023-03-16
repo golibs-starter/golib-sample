@@ -32,6 +32,7 @@ func init() {
 			httpmock.ActivateNonDefault(httpClient)
 			return httpClient
 		}),
+		golibtest.EnableWebTestUtil(),
 		bootstrap.All(),
 		golibmsg.KafkaConsumerReadyWaitOpt(),
 	)
