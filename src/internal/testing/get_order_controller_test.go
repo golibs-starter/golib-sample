@@ -32,7 +32,7 @@ func TestGetOrderById_GiveValidId_WhenRepoResponseSuccess_ShouldReturnSuccess(t 
 		})
 }
 
-func TestGetOrderById_GiveInvalidId_ShouldReturnSuccess(t *testing.T) {
+func TestGetOrderById_GiveInvalidId_ShouldReturnBadRequest(t *testing.T) {
 	golibtest.NewRestAssured(t).
 		When().
 		Get("/v1/orders/xxx").
@@ -41,4 +41,15 @@ func TestGetOrderById_GiveInvalidId_ShouldReturnSuccess(t *testing.T) {
 		Status(http.StatusBadRequest).
 		Body("meta.code", exception.OrderIdInvalid.Code()).
 		Body("meta.message", exception.OrderIdInvalid.Error())
+}
+
+func TestGetOrderById_GiveNotFoundId_ShouldReturnNotFound(t *testing.T) {
+	golibtest.NewRestAssured(t).
+		When().
+		Get("/v1/orders/10000").
+		BasicAuth("internal_service", "secret").
+		Then().
+		Status(http.StatusNotFound).
+		Body("meta.code", exception.ResourceNotFound.Code()).
+		Body("meta.message", exception.ResourceNotFound.Error())
 }
