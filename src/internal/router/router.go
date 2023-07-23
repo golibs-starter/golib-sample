@@ -5,7 +5,6 @@ import (
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-gin"
 	"gitlab.com/golibs-starter/golib-sample-internal/controller"
 	"gitlab.com/golibs-starter/golib-sample-internal/docs"
 	"gitlab.com/golibs-starter/golib-sample-internal/properties"
@@ -22,11 +21,6 @@ type RegisterRoutersIn struct {
 	Actuator         *actuator.Endpoint
 	StatusController *controller.StatusController
 	OrderController  *controller.OrderController
-}
-
-func RegisterHandlers(app *golib.App, engine *gin.Engine) {
-	engine.Use(golibgin.InitContext())
-	engine.Use(golibgin.WrapAll(app.Handlers())...)
 }
 
 func RegisterGinRouters(p RegisterRoutersIn) {
