@@ -2,10 +2,10 @@ package usecase
 
 import (
 	"context"
+	"github.com/pkg/errors"
 	"gitlab.com/golibs-starter/golib-sample-core/entity"
 	"gitlab.com/golibs-starter/golib-sample-core/exception"
 	"gitlab.com/golibs-starter/golib-sample-core/port"
-	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type GetOrderUseCase struct {
@@ -19,8 +19,7 @@ func NewGetOrderUseCase(orderRepo port.OrderRepository) *GetOrderUseCase {
 func (g GetOrderUseCase) GetById(ctx context.Context, id int64) (*entity.Order, error) {
 	order, err := g.orderRepo.FindById(ctx, id)
 	if err != nil {
-		log.Error(ctx, "Cannot get order by id [%d] due by error [%v]", id, err)
-		return nil, err
+		return nil, errors.WithMessage(err, "get order failed")
 	}
 	return order, nil
 }

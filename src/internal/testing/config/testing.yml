@@ -1,6 +1,9 @@
 app:
   port: 0 # 0 means random port
-  logging.development: true
+  logging:
+    development: true
+    jsonOutputMode: false
+    logLevel: DEBUG
 
   datasource:
     driver: mysql

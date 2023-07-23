@@ -1,37 +1,46 @@
 package handler
 
 import (
-    "encoding/json"
-    "gitlab.com/golibs-starter/golib-message-bus/kafka/core"
-    "gitlab.com/golibs-starter/golib-sample-adapter/service"
-    "gitlab.com/golibs-starter/golib-sample-core/event"
-    "gitlab.com/golibs-starter/golib/web/log"
+	"gitlab.com/golibs-starter/golib-message-bus/kafka/core"
+	"gitlab.com/golibs-starter/golib-message-bus/kafka/relayer"
+	"gitlab.com/golibs-starter/golib-sample-adapter/service"
+	"gitlab.com/golibs-starter/golib-sample-core/event"
+	"gitlab.com/golibs-starter/golib/log"
 )
 
 type SendOrderToDeliveryProviderHandler struct {
-    orderDeliveryService *service.OrderDeliveryService
+	orderDeliveryService *service.OrderDeliveryService
+	eventConverter       relayer.EventConverter
 }
 
-func NewSendOrderToDeliveryProviderHandler(orderDeliveryService *service.OrderDeliveryService) core.ConsumerHandler {
-    return &SendOrderToDeliveryProviderHandler{orderDeliveryService: orderDeliveryService}
+func NewSendOrderToDeliveryProviderHandler(
+	orderDeliveryService *service.OrderDeliveryService,
+	eventConverter relayer.EventConverter,
+) core.ConsumerHandler {
+	return &SendOrderToDeliveryProviderHandler{
+		orderDeliveryService: orderDeliveryService,
+		eventConverter:       eventConverter,
+	}
 }
 
 func (c *SendOrderToDeliveryProviderHandler) HandlerFunc(msg *core.ConsumerMessage) {
-    var e event.OrderCreatedEvent
-    if err := json.Unmarshal(msg.Value, &e); err != nil {
-        log.Errore(e, "[SendOrderToDeliveryProviderHandler] Error when unmarshal event message, detail: ", err)
-        return
-    }
-    log.Infoe(e, "[SendOrderToDeliveryProviderHandler] Success to unmarshal event message")
-    err := c.orderDeliveryService.Send(e.Context(), event.OrderMessageToEntity(e.PayloadData))
-    if err != nil {
-        log.Error(e.Context(), "[SendOrderToDeliveryProviderHandler] Error when send order [%d] to delivery service [%v]",
-            e.PayloadData.Id, err)
-        return
-    }
-    log.Info(e.Context(), "[SendOrderToDeliveryProviderHandler] Success to send order [%d] to delivery service", e.PayloadData.Id)
+	var e event.OrderCreatedEvent
+	if err := c.eventConverter.Restore(msg, &e); err != nil {
+		log.Error("[SendOrderToDeliveryProviderHandler] Error when unmarshal event message, detail: ", err)
+		return
+	}
+	logger := log.WithCtx(e.Context())
+	logger.Info("[SendOrderToDeliveryProviderHandler] Success to unmarshal event message")
+	payload := e.Payload().(*event.OrderMessage)
+	err := c.orderDeliveryService.Send(e.Context(), event.OrderMessageToEntity(payload))
+	if err != nil {
+		logger.WithError(err).
+			Error("[SendOrderToDeliveryProviderHandler] Error when send order [%d] to delivery service", payload.Id)
+		return
+	}
+	logger.Infof("[SendOrderToDeliveryProviderHandler] Success to send order [%d] to delivery service", payload.Id)
 }
 
-func (c SendOrderToDeliveryProviderHandler) Close() {
-    //
+func (c *SendOrderToDeliveryProviderHandler) Close() {
+	//
 }

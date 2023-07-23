@@ -3,7 +3,6 @@ package testing
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/suite"
-	golibdataTestUtil "gitlab.com/golibs-starter/golib-data/testutil"
 	"gitlab.com/golibs-starter/golib-message-bus"
 	golibmsgTestUtil "gitlab.com/golibs-starter/golib-message-bus/testutil"
 	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
@@ -24,7 +23,6 @@ type CreateOrderControllerTest struct {
 func TestCreateOrderControllerTest(t *testing.T) {
 	s := new(CreateOrderControllerTest)
 	s.Option(
-		golibdataTestUtil.TruncateTablesOpt("orders"),
 		golibmsgTestUtil.MessageCollectorOpt(),
 		golibmsg.KafkaConsumerOpt(),
 		golibmsg.KafkaConsumerReadyWaitOpt(),

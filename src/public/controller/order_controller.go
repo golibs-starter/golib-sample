@@ -7,7 +7,7 @@ import (
 	"gitlab.com/golibs-starter/golib-sample-public/resource"
 	"gitlab.com/golibs-starter/golib-security/web/context"
 	baseEx "gitlab.com/golibs-starter/golib/exception"
-	"gitlab.com/golibs-starter/golib/web/log"
+	"gitlab.com/golibs-starter/golib/log"
 	"gitlab.com/golibs-starter/golib/web/response"
 	"strconv"
 )
@@ -56,18 +56,22 @@ func (s OrderController) GetOrder(c *gin.Context) {
 // @Failure 500 {object} response.Response
 // @Router /v1/orders [post]
 func (s OrderController) CreateOrder(c *gin.Context) {
+	contextualLogger := log.WithCtx(c)
 	var body resource.CreateOrderRequest
 	if err := c.ShouldBindJSON(&body); err != nil {
-		log.Warn(c, "Cannot bind request body, err [%s]", err)
+		contextualLogger.WithError(err).Info("Cannot bind request body")
 		response.WriteError(c.Writer, baseEx.BadRequest)
 		return
 	}
+
 	packet := body.ToEntity()
 	packet.UserId = context.GetUserDetails(c.Request).Username()
 	entity, err := s.orderService.Create(c, packet)
 	if err != nil {
+		contextualLogger.WithError(err).Info("Create order failed")
 		response.WriteError(c.Writer, err)
 		return
 	}
+	contextualLogger.WithAny("order_id", entity.Id).Info("Order created")
 	response.Write(c.Writer, response.Ok(resource.NewOrder(entity)))
 }

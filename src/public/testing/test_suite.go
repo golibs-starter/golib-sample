@@ -26,6 +26,7 @@ func (s *TestSuite) SetupSuite() {
 	s.Option(golibsecTestUtil.JwtTestUtilOpt())
 	s.Option(golibdataTestUtil.EnableDatabaseTestUtilOpt())
 	s.Option(golibtest.EnableWebTestUtil())
+	s.Option(golibdataTestUtil.TruncateTablesOpt("orders"))
 	s.Populate(&s.jwtTestUtil)
 	s.Option(bootstrap.All())
 	s.StartApp()

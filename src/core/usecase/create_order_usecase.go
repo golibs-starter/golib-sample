@@ -2,11 +2,11 @@ package usecase
 
 import (
 	"context"
+	"github.com/pkg/errors"
 	"gitlab.com/golibs-starter/golib-sample-core/entity"
 	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
 	"gitlab.com/golibs-starter/golib-sample-core/event"
 	"gitlab.com/golibs-starter/golib-sample-core/port"
-	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type CreateOrderUseCase struct {
@@ -24,8 +24,7 @@ func NewCreateOrderUseCase(orderRepo port.OrderRepository, eventPublisher port.E
 func (c CreateOrderUseCase) Create(ctx context.Context, req *request.CreateOrderRequest) (*entity.Order, error) {
 	order, err := c.orderRepo.CreateOrder(ctx, req)
 	if err != nil {
-		log.Error(ctx, "Cannot create order due by error [%v]", err)
-		return nil, err
+		return nil, errors.WithMessage(err, "create order failed")
 	}
 	c.eventPublisher.Publish(event.NewOrderCreatedEvent(ctx, order))
 	return order, nil
