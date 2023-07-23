@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine AS builder
+FROM golang:1.19-alpine AS builder
 ARG GITLAB_USER
 ARG GITLAB_ACCESS_TOKEN
 ARG BUILD_MODULE
