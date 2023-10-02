@@ -1,8 +1,8 @@
 package testing
 
 import (
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-test"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	golibtest "github.com/golibs-starter/golib-test"
 	"net/http"
 	"testing"
 )

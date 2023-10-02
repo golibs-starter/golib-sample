@@ -2,12 +2,12 @@ package testing
 
 import (
 	"encoding/json"
+	golibmsg "github.com/golibs-starter/golib-message-bus"
+	golibmsgTestUtil "github.com/golibs-starter/golib-message-bus/testutil"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"github.com/golibs-starter/golib-sample-core/event"
+	golibtest "github.com/golibs-starter/golib-test"
 	"github.com/stretchr/testify/suite"
-	"gitlab.com/golibs-starter/golib-message-bus"
-	golibmsgTestUtil "gitlab.com/golibs-starter/golib-message-bus/testutil"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
-	"gitlab.com/golibs-starter/golib-sample-core/event"
-	"gitlab.com/golibs-starter/golib-test"
 	"gorm.io/gorm"
 	"net/http"
 	"testing"

@@ -2,11 +2,11 @@ package mysql
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/mapper"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/entity/request"
-	"gitlab.com/golibs-starter/golib-sample-core/port"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql/mapper"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"github.com/golibs-starter/golib-sample-core/entity"
+	"github.com/golibs-starter/golib-sample-core/entity/request"
+	"github.com/golibs-starter/golib-sample-core/port"
 	"gorm.io/gorm"
 )
 

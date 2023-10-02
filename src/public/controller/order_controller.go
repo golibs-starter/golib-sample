@@ -2,13 +2,13 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.com/golibs-starter/golib-sample-adapter/service"
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-sample-public/resource"
-	"gitlab.com/golibs-starter/golib-security/web/context"
-	baseEx "gitlab.com/golibs-starter/golib/exception"
-	"gitlab.com/golibs-starter/golib/log"
-	"gitlab.com/golibs-starter/golib/web/response"
+	"github.com/golibs-starter/golib-sample-adapter/service"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	"github.com/golibs-starter/golib-sample-public/resource"
+	"github.com/golibs-starter/golib-security/web/context"
+	baseEx "github.com/golibs-starter/golib/exception"
+	"github.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib/web/response"
 	"strconv"
 )
 

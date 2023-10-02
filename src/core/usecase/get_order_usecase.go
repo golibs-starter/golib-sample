@@ -2,10 +2,10 @@ package usecase
 
 import (
 	"context"
+	"github.com/golibs-starter/golib-sample-core/entity"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	"github.com/golibs-starter/golib-sample-core/port"
 	"github.com/pkg/errors"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-sample-core/port"
 )
 
 type GetOrderUseCase struct {

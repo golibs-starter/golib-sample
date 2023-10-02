@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gitlab.com/golibs-starter/golib-sample-worker/bootstrap"
+	"github.com/golibs-starter/golib-sample-worker/bootstrap"
 	"go.uber.org/fx"
 )
 

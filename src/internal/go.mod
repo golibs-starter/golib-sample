@@ -1,22 +1,22 @@
-module gitlab.com/golibs-starter/golib-sample-internal
+module github.com/golibs-starter/golib-sample-internal
 
 go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.9.1
+	github.com/golibs-starter/golib v1.0.0
+	github.com/golibs-starter/golib-data v1.0.0
+	github.com/golibs-starter/golib-gin v1.0.0
+	github.com/golibs-starter/golib-message-bus v1.0.0
+	github.com/golibs-starter/golib-migrate v1.0.0
+	github.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
+	github.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
+	github.com/golibs-starter/golib-security v1.0.0
+	github.com/golibs-starter/golib-test v1.0.0
 	github.com/stretchr/testify v1.8.4
 	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
 	github.com/swaggo/gin-swagger v1.3.3
 	github.com/swaggo/swag v1.7.4
-	gitlab.com/golibs-starter/golib v0.15.0
-	gitlab.com/golibs-starter/golib-data v0.13.0
-	gitlab.com/golibs-starter/golib-gin v0.8.0
-	gitlab.com/golibs-starter/golib-message-bus v0.6.0
-	gitlab.com/golibs-starter/golib-migrate v0.4.0
-	gitlab.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
-	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
-	gitlab.com/golibs-starter/golib-security v0.10.0
-	gitlab.com/golibs-starter/golib-test v0.6.0
 	go.uber.org/fx v1.20.0
 	gorm.io/gorm v1.25.0
 )
@@ -100,8 +100,8 @@ require (
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/dig v1.17.0 // indirect
-	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.24.0 // indirect
+	go.uber.org/multierr v1.10.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/mod v0.9.0 // indirect
@@ -128,6 +128,6 @@ require (
 )
 
 replace (
-	gitlab.com/golibs-starter/golib-sample-adapter => ./../adapter
-	gitlab.com/golibs-starter/golib-sample-core => ./../core
+	github.com/golibs-starter/golib-sample-adapter => ./../adapter
+	github.com/golibs-starter/golib-sample-core => ./../core
 )

@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-data"
-	"gitlab.com/golibs-starter/golib-migrate"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib"
+	golibdata "github.com/golibs-starter/golib-data"
+	golibmigrate "github.com/golibs-starter/golib-migrate"
+	"github.com/golibs-starter/golib/log"
 	"go.uber.org/fx"
 )
 

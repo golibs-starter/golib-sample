@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"gitlab.com/golibs-starter/golib-message-bus/kafka/core"
-	"gitlab.com/golibs-starter/golib-message-bus/kafka/relayer"
-	"gitlab.com/golibs-starter/golib-sample-adapter/service"
-	"gitlab.com/golibs-starter/golib-sample-core/event"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib-message-bus/kafka/core"
+	"github.com/golibs-starter/golib-message-bus/kafka/relayer"
+	"github.com/golibs-starter/golib-sample-adapter/service"
+	"github.com/golibs-starter/golib-sample-core/event"
+	"github.com/golibs-starter/golib/log"
 )
 
 type SendOrderToDeliveryProviderHandler struct {

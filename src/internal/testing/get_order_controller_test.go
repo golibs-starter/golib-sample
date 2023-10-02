@@ -2,10 +2,10 @@ package testing
 
 import (
 	"fmt"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	golibtest "github.com/golibs-starter/golib-test"
 	assert "github.com/stretchr/testify/require"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-test"
 	"net/http"
 	"testing"
 	"time"

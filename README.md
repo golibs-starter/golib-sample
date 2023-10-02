@@ -1,5 +1,9 @@
 # Golib Sample Project
 
+> **Note**
+> We are moving out from [Gitlab](https://gitlab.com/golibs-starter). All packages are now migrated
+> to `github.com/golibs-starter/*`. Please consider updating.
+
 A sample project for Golib based on Clean Architecture, include the following layers:
 
 - [Business Rules Layer: Core](./src/core)

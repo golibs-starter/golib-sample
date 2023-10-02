@@ -1,18 +1,18 @@
 package properties
 
-import "gitlab.com/golibs-starter/golib/config"
+import "github.com/golibs-starter/golib/config"
 
 type DeliveryServiceProperties struct {
-    BaseUrl         string
-    CreateOrderPath string
+	BaseUrl         string
+	CreateOrderPath string
 }
 
 func NewDeliveryServiceProperties(loader config.Loader) (*DeliveryServiceProperties, error) {
-    props := DeliveryServiceProperties{}
-    err := loader.Bind(&props)
-    return &props, err
+	props := DeliveryServiceProperties{}
+	err := loader.Bind(&props)
+	return &props, err
 }
 
 func (o DeliveryServiceProperties) Prefix() string {
-    return "app.services.delivery"
+	return "app.services.delivery"
 }

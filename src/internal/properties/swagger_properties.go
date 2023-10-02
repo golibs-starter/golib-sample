@@ -1,7 +1,7 @@
 package properties
 
 import (
-	"gitlab.com/golibs-starter/golib/config"
+	"github.com/golibs-starter/golib/config"
 )
 
 func NewSwaggerProperties(loader config.Loader) (*SwaggerProperties, error) {

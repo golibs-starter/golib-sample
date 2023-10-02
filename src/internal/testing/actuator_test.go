@@ -1,7 +1,7 @@
 package testing
 
 import (
-	"gitlab.com/golibs-starter/golib-test"
+	golibtest "github.com/golibs-starter/golib-test"
 	"net/http"
 	"testing"
 )

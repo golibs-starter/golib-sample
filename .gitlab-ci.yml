@@ -28,8 +28,6 @@ stages:
       - tags
   before_script:
     - apk update && apk add git build-base
-    - export GOPRIVATE=gitlab.com
-    - git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.com/".insteadOf "https://gitlab.com/"
 
 automation test:
   extends: .test

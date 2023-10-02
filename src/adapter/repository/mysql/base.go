@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
+	"github.com/golibs-starter/golib-sample-core/exception"
 	"gorm.io/gorm"
 )
 

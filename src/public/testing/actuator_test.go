@@ -1,8 +1,8 @@
 package testing
 
 import (
+	golibtest "github.com/golibs-starter/golib-test"
 	"github.com/stretchr/testify/suite"
-	"gitlab.com/golibs-starter/golib-test"
 	"net/http"
 	"testing"
 )

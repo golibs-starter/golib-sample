@@ -1,174 +1,174 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "Sample Public API",
-        "contact": {},
-        "version": "1.0.0"
-    },
-    "paths": {
-        "/v1/orders": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "OrderController"
-                ],
-                "summary": "Create order",
-                "parameters": [
-                    {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/resource.CreateOrderRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/response.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/resource.Order"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/response.Response"
-                        }
-                    }
-                }
+  "swagger": "2.0",
+  "info": {
+    "title": "Sample Public API",
+    "contact": {},
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/orders": {
+      "post": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OrderController"
+        ],
+        "summary": "Create order",
+        "parameters": [
+          {
+            "description": "Request body",
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/resource.CreateOrderRequest"
             }
-        },
-        "/v1/orders/{id}": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/response.Response"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/resource.Order"
                     }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "OrderController"
-                ],
-                "summary": "Get order by ID",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "order id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/response.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/resource.Order"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/response.Response"
-                        }
-                    }
+                  }
                 }
+              ]
             }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Response"
+            }
+          }
         }
+      }
     },
-    "definitions": {
-        "resource.CreateOrderRequest": {
-            "type": "object",
-            "properties": {
-                "total_amount": {
-                    "type": "integer"
-                }
-            }
-        },
-        "resource.Order": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "integer"
+    "/v1/orders/{id}": {
+      "get": {
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "OrderController"
+        ],
+        "summary": "Get order by ID",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "order id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/response.Response"
                 },
-                "id": {
-                    "type": "integer"
-                },
-                "total_amount": {
-                    "type": "integer"
-                },
-                "user_id": {
-                    "type": "string"
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/resource.Order"
+                    }
+                  }
                 }
+              ]
             }
-        },
-        "response.Meta": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "integer"
-                },
-                "message": {
-                    "type": "string"
-                }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Response"
             }
-        },
-        "response.Response": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "meta": {
-                    "$ref": "#/definitions/response.Meta"
-                }
-            }
+          }
         }
-    },
-    "securityDefinitions": {
-        "BearerAuth": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
-        }
+      }
     }
+  },
+  "definitions": {
+    "resource.CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "total_amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "resource.Order": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "total_amount": {
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      }
+    },
+    "response.Meta": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "response.Response": {
+      "type": "object",
+      "properties": {
+        "data": {},
+        "meta": {
+          "$ref": "#/definitions/response.Meta"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
 }

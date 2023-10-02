@@ -2,9 +2,9 @@ package usecase
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib-sample-core/entity"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	"github.com/golibs-starter/golib/log"
 	"strconv"
 )
 

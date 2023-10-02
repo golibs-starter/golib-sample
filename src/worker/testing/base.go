@@ -1,13 +1,13 @@
 package testing
 
 import (
+	"github.com/golibs-starter/golib"
+	golibmsg "github.com/golibs-starter/golib-message-bus"
+	golibmsgTestUtil "github.com/golibs-starter/golib-message-bus/testutil"
+	"github.com/golibs-starter/golib-sample-worker/bootstrap"
+	golibtest "github.com/golibs-starter/golib-test"
+	"github.com/golibs-starter/golib/log"
 	"github.com/jarcoal/httpmock"
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-message-bus"
-	"gitlab.com/golibs-starter/golib-message-bus/testutil"
-	"gitlab.com/golibs-starter/golib-sample-worker/bootstrap"
-	"gitlab.com/golibs-starter/golib-test"
-	"gitlab.com/golibs-starter/golib/log"
 	"go.uber.org/fx"
 	"net/http"
 	"os"

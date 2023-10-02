@@ -1,15 +1,11 @@
 FROM golang:1.19-alpine AS builder
-ARG GITLAB_USER
-ARG GITLAB_ACCESS_TOKEN
 ARG BUILD_MODULE
 ARG BUILD_VERSION
 ARG BUILD_COMMIT_HASH
 ARG BUILD_TIME
-ARG BS_PKG=gitlab.com/golibs-starter/$BUILD_MODULE/bootstrap
+ARG BS_PKG=github.com/golibs-starter/$BUILD_MODULE/bootstrap
 ENV GO111MODULE=on
-ENV GOPRIVATE=gitlab.com
 RUN apk add --no-cache git
-RUN git config --global url."https://$GITLAB_USER:$GITLAB_ACCESS_TOKEN@gitlab.com/".insteadOf "https://gitlab.com/"
 COPY ./src /go/src
 WORKDIR /go/src/$BUILD_MODULE
 RUN env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o ./binary \

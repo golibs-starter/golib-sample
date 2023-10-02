@@ -1,11 +1,11 @@
 package testing
 
 import (
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-migrate"
-	"gitlab.com/golibs-starter/golib-sample-internal/bootstrap"
-	"gitlab.com/golibs-starter/golib-test"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib"
+	golibmigrate "github.com/golibs-starter/golib-migrate"
+	"github.com/golibs-starter/golib-sample-internal/bootstrap"
+	golibtest "github.com/golibs-starter/golib-test"
+	"github.com/golibs-starter/golib/log"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"os"

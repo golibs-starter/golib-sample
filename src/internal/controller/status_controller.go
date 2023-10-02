@@ -2,9 +2,9 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.com/golibs-starter/golib-sample-adapter/service"
-	"gitlab.com/golibs-starter/golib-sample-internal/resource"
-	"gitlab.com/golibs-starter/golib/web/response"
+	"github.com/golibs-starter/golib-sample-adapter/service"
+	"github.com/golibs-starter/golib-sample-internal/resource"
+	"github.com/golibs-starter/golib/web/response"
 )
 
 type StatusController struct {

@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/usecase"
+	"github.com/golibs-starter/golib-sample-core/entity"
+	"github.com/golibs-starter/golib-sample-core/usecase"
 )
 
 type StatusService struct {

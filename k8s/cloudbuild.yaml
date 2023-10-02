@@ -1,16 +1,16 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
-        'build',
-        '-t',
-        'asia.gcr.io/gcp-project-sample/${_IMAGE_NAME}:${_IMAGE_TAG}',
-        '--file=${_DOCKER_FILE}',
-        '--build-arg', 'GITLAB_USER=${_GITLAB_USER}',
-        '--build-arg', 'GITLAB_ACCESS_TOKEN=${_GITLAB_ACCESS_TOKEN}',
-        '--build-arg', 'BUILD_MODULE=${_BUILD_MODULE}',
-        '--build-arg', 'BUILD_COMMIT_HASH=${_BUILD_COMMIT_HASH}',
-        '--build-arg', 'BUILD_TIME=${_BUILD_TIME}',
-        '.'
+      'build',
+      '-t',
+      'asia.gcr.io/gcp-project-sample/${_IMAGE_NAME}:${_IMAGE_TAG}',
+      '--file=${_DOCKER_FILE}',
+      '--build-arg', 'GITLAB_USER=${_GITLAB_USER}',
+      '--build-arg', 'GITLAB_ACCESS_TOKEN=${_GITLAB_ACCESS_TOKEN}',
+      '--build-arg', 'BUILD_MODULE=${_BUILD_MODULE}',
+      '--build-arg', 'BUILD_COMMIT_HASH=${_BUILD_COMMIT_HASH}',
+      '--build-arg', 'BUILD_TIME=${_BUILD_TIME}',
+      '.'
     ]
   - name: 'gcr.io/cloud-builders/docker'
     args: [ "push", "asia.gcr.io/gcp-project-sample/${_IMAGE_NAME}:${_IMAGE_TAG}" ]

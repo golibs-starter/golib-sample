@@ -2,12 +2,12 @@ package testing
 
 import (
 	"github.com/gin-gonic/gin"
-	golibdataTestUtil "gitlab.com/golibs-starter/golib-data/testutil"
-	"gitlab.com/golibs-starter/golib-migrate"
-	"gitlab.com/golibs-starter/golib-sample-public/bootstrap"
-	"gitlab.com/golibs-starter/golib-security/testutil"
-	"gitlab.com/golibs-starter/golib-test"
-	"gitlab.com/golibs-starter/golib/log"
+	golibdataTestUtil "github.com/golibs-starter/golib-data/testutil"
+	golibmigrate "github.com/golibs-starter/golib-migrate"
+	"github.com/golibs-starter/golib-sample-public/bootstrap"
+	golibsecTestUtil "github.com/golibs-starter/golib-security/testutil"
+	golibtest "github.com/golibs-starter/golib-test"
+	"github.com/golibs-starter/golib/log"
 	"os"
 )
 

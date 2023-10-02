@@ -1,18 +1,18 @@
 package bootstrap
 
 import (
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-data"
-	"gitlab.com/golibs-starter/golib-gin"
-	"gitlab.com/golibs-starter/golib-message-bus"
-	"gitlab.com/golibs-starter/golib-sample-adapter/publisher"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql"
-	"gitlab.com/golibs-starter/golib-sample-adapter/service"
-	"gitlab.com/golibs-starter/golib-sample-core/usecase"
-	"gitlab.com/golibs-starter/golib-sample-public/controller"
-	"gitlab.com/golibs-starter/golib-sample-public/properties"
-	"gitlab.com/golibs-starter/golib-sample-public/router"
-	"gitlab.com/golibs-starter/golib-security"
+	"github.com/golibs-starter/golib"
+	golibdata "github.com/golibs-starter/golib-data"
+	golibgin "github.com/golibs-starter/golib-gin"
+	golibmsg "github.com/golibs-starter/golib-message-bus"
+	"github.com/golibs-starter/golib-sample-adapter/publisher"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql"
+	"github.com/golibs-starter/golib-sample-adapter/service"
+	"github.com/golibs-starter/golib-sample-core/usecase"
+	"github.com/golibs-starter/golib-sample-public/controller"
+	"github.com/golibs-starter/golib-sample-public/properties"
+	"github.com/golibs-starter/golib-sample-public/router"
+	golibsec "github.com/golibs-starter/golib-security"
 	"go.uber.org/fx"
 )
 

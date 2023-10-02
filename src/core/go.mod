@@ -1,14 +1,13 @@
-module gitlab.com/golibs-starter/golib-sample-core
+module github.com/golibs-starter/golib-sample-core
 
 go 1.19
 
 require (
+	github.com/golibs-starter/golib v1.0.0
 	github.com/pkg/errors v0.9.1
-	gitlab.com/golibs-starter/golib v0.15.0
 )
 
 require (
-	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
@@ -28,9 +27,8 @@ require (
 	github.com/spf13/viper v1.16.0 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
-	go.uber.org/atomic v1.9.0 // indirect
-	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.24.0 // indirect
+	go.uber.org/multierr v1.10.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect

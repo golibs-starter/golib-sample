@@ -1,8 +1,8 @@
 package publisher
 
 import (
-	"gitlab.com/golibs-starter/golib-sample-core/port"
-	"gitlab.com/golibs-starter/golib/pubsub"
+	"github.com/golibs-starter/golib-sample-core/port"
+	"github.com/golibs-starter/golib/pubsub"
 )
 
 type EventPublisherAdapter struct {

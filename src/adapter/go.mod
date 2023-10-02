@@ -1,10 +1,10 @@
-module gitlab.com/golibs-starter/golib-sample-adapter
+module github.com/golibs-starter/golib-sample-adapter
 
 go 1.19
 
 require (
-	gitlab.com/golibs-starter/golib v0.15.0
-	gitlab.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
+	github.com/golibs-starter/golib v1.0.0
+	github.com/golibs-starter/golib-sample-core v0.0.0-00010101000000-000000000000
 	gorm.io/gorm v1.22.3
 )
 
@@ -31,9 +31,8 @@ require (
 	github.com/spf13/viper v1.16.0 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/zenthangplus/defaults v1.6.2-beta // indirect
-	go.uber.org/atomic v1.9.0 // indirect
-	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.24.0 // indirect
+	go.uber.org/multierr v1.10.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
@@ -43,4 +42,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace gitlab.com/golibs-starter/golib-sample-core => ./../core
+replace github.com/golibs-starter/golib-sample-core => ./../core

@@ -2,13 +2,13 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/golibs-starter/golib"
+	"github.com/golibs-starter/golib-sample-internal/controller"
+	"github.com/golibs-starter/golib-sample-internal/docs"
+	"github.com/golibs-starter/golib-sample-internal/properties"
+	"github.com/golibs-starter/golib/web/actuator"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-sample-internal/controller"
-	"gitlab.com/golibs-starter/golib-sample-internal/docs"
-	"gitlab.com/golibs-starter/golib-sample-internal/properties"
-	"gitlab.com/golibs-starter/golib/web/actuator"
 	"go.uber.org/fx"
 )
 

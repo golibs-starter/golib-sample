@@ -1,16 +1,16 @@
 package bootstrap
 
 import (
-	"gitlab.com/golibs-starter/golib"
-	golibgin "gitlab.com/golibs-starter/golib-gin"
-	"gitlab.com/golibs-starter/golib-message-bus"
-	"gitlab.com/golibs-starter/golib-sample-adapter/http/client"
-	adapterProps "gitlab.com/golibs-starter/golib-sample-adapter/properties"
-	"gitlab.com/golibs-starter/golib-sample-adapter/service"
-	"gitlab.com/golibs-starter/golib-sample-core/usecase"
-	"gitlab.com/golibs-starter/golib-sample-worker/handler"
-	"gitlab.com/golibs-starter/golib-sample-worker/router"
-	"gitlab.com/golibs-starter/golib-security"
+	"github.com/golibs-starter/golib"
+	golibgin "github.com/golibs-starter/golib-gin"
+	golibmsg "github.com/golibs-starter/golib-message-bus"
+	"github.com/golibs-starter/golib-sample-adapter/http/client"
+	adapterProps "github.com/golibs-starter/golib-sample-adapter/properties"
+	"github.com/golibs-starter/golib-sample-adapter/service"
+	"github.com/golibs-starter/golib-sample-core/usecase"
+	"github.com/golibs-starter/golib-sample-worker/handler"
+	"github.com/golibs-starter/golib-sample-worker/router"
+	golibsec "github.com/golibs-starter/golib-security"
 	"go.uber.org/fx"
 )
 

@@ -2,11 +2,11 @@ package testing
 
 import (
 	"fmt"
+	golibdataTestUtil "github.com/golibs-starter/golib-data/testutil"
+	"github.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
+	"github.com/golibs-starter/golib-sample-core/exception"
+	golibtest "github.com/golibs-starter/golib-test"
 	"github.com/stretchr/testify/suite"
-	golibdataTestUtil "gitlab.com/golibs-starter/golib-data/testutil"
-	"gitlab.com/golibs-starter/golib-sample-adapter/repository/mysql/model"
-	"gitlab.com/golibs-starter/golib-sample-core/exception"
-	"gitlab.com/golibs-starter/golib-test"
 	"gorm.io/gorm"
 	"net/http"
 	"testing"

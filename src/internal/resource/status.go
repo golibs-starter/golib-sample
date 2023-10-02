@@ -1,6 +1,6 @@
 package resource
 
-import "gitlab.com/golibs-starter/golib-sample-core/entity"
+import "github.com/golibs-starter/golib-sample-core/entity"
 
 type Status struct {
 	HttpCode int `json:"http_code"`

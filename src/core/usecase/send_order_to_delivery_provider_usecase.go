@@ -2,9 +2,9 @@ package usecase
 
 import (
 	"context"
-	"gitlab.com/golibs-starter/golib-sample-core/entity"
-	"gitlab.com/golibs-starter/golib-sample-core/port"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib-sample-core/entity"
+	"github.com/golibs-starter/golib-sample-core/port"
+	"github.com/golibs-starter/golib/log"
 )
 
 type SendOrderToDeliveryProviderUseCase struct {
