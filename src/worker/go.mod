@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golibs-starter/golib v1.0.0
+	github.com/golibs-starter/golib-cron v1.0.0
 	github.com/golibs-starter/golib-gin v1.0.0
 	github.com/golibs-starter/golib-message-bus v1.0.0
 	github.com/golibs-starter/golib-sample-adapter v0.0.0-00010101000000-000000000000
@@ -58,6 +59,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cast v1.5.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect

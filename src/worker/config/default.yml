@@ -6,3 +6,12 @@ app:
       publicUrls:
         - /actuator/health
         - /actuator/info
+
+  cron:
+    jobs:
+      - name: YourFirstCronJob
+        spec: "@every 30s"
+        disabled: false
+      - name: YourCustomizedSecondCronJobName
+        spec: "* * * * *"
+        disabled: false

@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"github.com/golibs-starter/golib"
+	golibcron "github.com/golibs-starter/golib-cron"
 	golibgin "github.com/golibs-starter/golib-gin"
 	golibmsg "github.com/golibs-starter/golib-message-bus"
 	"github.com/golibs-starter/golib-sample-adapter/http/client"
@@ -9,6 +10,7 @@ import (
 	"github.com/golibs-starter/golib-sample-adapter/service"
 	"github.com/golibs-starter/golib-sample-core/usecase"
 	"github.com/golibs-starter/golib-sample-worker/handler"
+	"github.com/golibs-starter/golib-sample-worker/job"
 	"github.com/golibs-starter/golib-sample-worker/router"
 	golibsec "github.com/golibs-starter/golib-security"
 	"go.uber.org/fx"
@@ -27,6 +29,7 @@ func All() fx.Option {
 		// Provide datasource, message queue auto config
 		golibmsg.KafkaCommonOpt(),
 		golibmsg.KafkaConsumerOpt(),
+		golibmsg.KafkaProducerOpt(),
 
 		// Provide http client auto config with contextual http client by default,
 		// Besides, provide an additional wrapper to easy to control security.
@@ -48,6 +51,11 @@ func All() fx.Option {
 		// Provide handlers
 		golibmsg.ProvideConsumer(handler.NewSendOrderToDeliveryProviderHandler),
 
+		// Provide cron jobs
+		golibcron.Opt(),
+		golibcron.ProvideJob(job.NewYourFirstCronJob),
+		golibcron.ProvideJob(job.NewYourSecondCronJob),
+
 		// Provide gin engine, register core handlers,
 		// actuator endpoints and application routers
 		golibgin.GinHttpServerOpt(),
@@ -58,5 +66,6 @@ func All() fx.Option {
 		golibgin.OnStopHttpServerOpt(),
 		golibmsg.OnStopProducerOpt(),
 		golibmsg.OnStopConsumerOpt(),
+		golibcron.OnStopHookOpt(),
 	)
 }

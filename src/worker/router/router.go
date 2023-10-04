@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/golibs-starter/golib"
+	golibgin "github.com/golibs-starter/golib-gin"
 	"github.com/golibs-starter/golib/web/actuator"
 	"go.uber.org/fx"
 )
