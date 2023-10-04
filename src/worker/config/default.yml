@@ -8,6 +8,7 @@ app:
         - /actuator/info
 
   cron:
+    enabledDebugMode: false
     jobs:
       - name: YourFirstCronJob
         spec: "@every 30s"
